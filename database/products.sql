@@ -16,4 +16,4 @@ INSERT INTO products (title, description, price, condition, category, seller_id)
     ('Nintendo Switch', 'Nintendo Switch console with accessories', 300.00, 'Used', 'Electronics', 3),
     ('Antique Silverware Set', 'Vintage silverware set from the 1920s', 200.00, 'Refurbished', 'Home & Garden', 1),
     ('Golf Clubs', 'Complete set of golf clubs with bag', 150.00, 'Used', 'Sports', 4)
-    ;
+;
