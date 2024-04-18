@@ -10,7 +10,7 @@ ul.topnav {
 ul.topnav li {
   float: left;
   height: 51px;
-  padding-right: 3px;
+  padding-right: 0px;
 }
 
 ul.topnav li a {
