@@ -17,6 +17,18 @@ if(isset($_POST['find'])){
     
     $rows = $query->rowCount(); // Get the row count
 }
+
+if(isset($_GET['category'])) {
+    $category = $_GET['category'];
+    
+    // Prepare and execute SQL query to fetch products of the selected category
+    $query = $db->prepare('SELECT * FROM products WHERE category = :category');
+    $query->bindValue(':category', $category, PDO::PARAM_STR);
+    $query->execute(); // Execute the query
+    $products = $query->fetchAll(); // Fetch products
+    
+    $rows = $query->rowCount(); // Get the row count
+}
 ?>
 
 <!doctype html>
@@ -43,6 +55,17 @@ if(isset($_POST['find'])){
     </ul>
 </header>
 <body>
+<nav id="filters-bar">
+    <ul>
+    <li><a href="?category=Clothing">Clothing</a></li>
+        <li><a href="?category=Electronics">Electronics</a></li>
+        <li><a href="?category=Sports">Sports</a></li>
+        <li><a href="?category=Home%20&%20Garden">House and Garden</a></li>
+        <li><a href="?category=Offers">Offers</a></li>
+        <li><a href="?category=More">More</a></li>
+    </ul>
+  </nav>
+    </nav>
 <?php
   if(!empty($results)){//error in the verification
       foreach($results as $r){
@@ -51,6 +74,15 @@ if(isset($_POST['find'])){
   } else {
       echo 'No result found';
   }
+  if(isset($products)){
+    if(!empty($products)){//error in the verification
+        foreach($products as $product){
+            echo '<h4>'.$product['title'].'</h4>';
+        }
+    } else {
+        echo 'No products found for selected category';
+    }
+}
 ?>
 </body>
 </html>
