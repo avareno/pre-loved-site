@@ -74,14 +74,12 @@ if(isset($_GET['category'])) {
   } else {
       echo 'No result found';
   }
-  if(isset($products)){
-    if(!empty($products)){//error in the verification
-        foreach($products as $product){
-            echo '<h4>'.$product['title'].'</h4>';
-        }
-    } else {
-        echo 'No products found for selected category';
+  if(!empty($products)){//error in the verification
+    foreach($products as $products){
+        echo '<h4>'.$products['title'].'</h4>';
     }
+} else {
+    echo 'No result found';
 }
 ?>
 </body>
