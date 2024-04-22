@@ -1,4 +1,4 @@
-ul.topnav {
+nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -7,26 +7,31 @@ ul.topnav {
   border: 1px solid red;
 }
 
-ul.topnav li {
+nav ul li {
   float: left;
   height: 51px;
   padding-right: 0px;
 }
 
-ul.topnav li a {
+nav ul li a {
   display: block;
   color: black;
   text-align: center;
   padding: 14px 16px;  ul.topnav li a:hover:not(.active) {background-color: white;}
   text-decoration: none;
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+
 }
 
+nav input[type = "submit"]{
+  display: none;
+}
+nav ul li a:hover:not(.active) {background-color: #04AA6D;}
 
-ul.topnav li a:hover:not(.active) {background-color: #04AA6D;}
+nav ul li a.active {background-color: #04AA6D;}
 
-ul.topnav li a.active {background-color: #04AA6D;}
-
-ul.topnav li.right {float: right;}
+nav ul li.right {float: right;}
 
 body{
   background-color: white;
@@ -39,11 +44,11 @@ img{
   width:auto;
 }
 
-.topnav input[type=text] {
+nav input[type=text] {
   border: none;
   margin: 2px 0px 2px 0px;
-  font-size: 20px;
-  height: 88%;
+  font-size: 30px;
+
 }
 
 @media screen and (max-width: 600px) {
