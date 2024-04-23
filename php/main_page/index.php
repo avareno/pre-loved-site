@@ -15,12 +15,23 @@ if (isset($_POST['find'])) {
 if (isset($_GET['category'])) {
     $category = $_GET['category'];
 
-    $query = $db->prepare('SELECT * FROM products WHERE category = :category');
+    $query = $db->prepare('SELECT title, img_url FROM products WHERE category = :category');
     $query->bindValue(':category', $category, PDO::PARAM_STR);
     $query->execute();
     $products = $query->fetchAll();
     $rows = $query->rowCount();
 }
+
+//fetch latest items
+$query = $db->prepare('SELECT * FROM products ORDER BY created_at DESC LIMIT 5');
+$query->execute();
+$latests = $query->fetchAll();
+$rows = $query->rowCount();
+
+
+
+
+
 ?>
 
 <!doctype html>
@@ -41,7 +52,9 @@ if (isset($_GET['category'])) {
     <header>
         <nav>
             <ul>
-                <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
+                <li><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png">
+                </li>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -68,25 +81,39 @@ if (isset($_GET['category'])) {
 
     <section class="grid-container">
         <?php
-            if (!empty($results)) {
-                foreach ($results as $result) {
-                    echo '<div class="grid-item">';
-                    echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
-                    $image_url = $result['img_url'];
-                    echo '<img src="' . $image_url . '">';
-                    echo '</div>';
-                }
-            } elseif (!empty($products)) {
-                foreach ($products as $product) {
-                    echo '<div class="grid-item">';
-                    echo '<h4>' . $product['title'] . '</h4>';
-                    $image_url = $product['img_url'];
-                    echo '<img src="' . $image_url . '">';
-                    echo '</div>';
-                }
-            } else {
-                echo 'No result found';
+        if (!empty($results)) {
+            foreach ($results as $result) {
+                echo '<div class="grid-item">';
+                echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
+                $image_url = $result['img_url'];
+                echo '<img src="' . $image_url . '">';
+                echo '</div>';
             }
+        } elseif (!empty($products)) {
+            foreach ($products as $product) {
+                echo '<div class="grid-item">';
+                echo '<h4>' . $product['title'] . '</h4>';
+                $image_url = $product['img_url'];
+                echo '<img src="' . $image_url . '">';
+                echo '</div>';
+            }
+        } else {
+            echo 'No result found';
+        }
+        ?>
+
+
+
+    </section>
+    <section class="grid-container">
+        <?php
+        foreach ($latests as $latest) {
+            echo '<div class="grid-item">';
+            echo '<h4>' . $latest['title'] . '</h4>';
+            $image_url = $latest['img_url'];
+            echo '<img src="' . $image_url . '">';
+            echo '</div>';
+        }
         ?>
     </section>
 

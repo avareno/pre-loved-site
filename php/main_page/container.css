@@ -1,12 +1,17 @@
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust width as needed */
-    grid-gap: 20px; /* Adjust gap between items */
+    width: 60%;
+    margin: 0 auto; 
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr)); /* Adjust width as needed */
+    grid-gap: 0%; /* Adjust gap between items */
     border: 1px solid red;
 }
 
 .grid-item {
     overflow: hidden; /* Ensure image does not overflow */
+    width: 70%;
+    margin: 0 auto; 
+    border: 1px solid red;
 }
 
 .grid-item img {
