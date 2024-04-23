@@ -7,8 +7,15 @@
     border: 1px solid red;
 }
 
+.grid-container h3{
+    display: grid;
+    grid-column: 1 / -1; /*first to last column */
+    width: 100%;
+
+}
+
 .grid-item {
-    overflow: hidden; /* Ensure image does not overflow */
+    overflow: hidden; 
     width: 70%;
     margin: 0 auto; 
     border: 1px solid red;
@@ -19,28 +26,3 @@
     height: auto; /* Maintain aspect ratio */
 }
 
-#filters-bar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    overflow: hidden;
-    display: grid;
-    grid-auto-flow: column;
-}
-
-#filters-bar li a {
-    display: block;
-    color: #333;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#filters-bar li a:hover {
-    background-color: #04aa6d;
-}
-
-#filters-bar {
-    border: 5px solid yellow;
-}

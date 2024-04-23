@@ -106,6 +106,7 @@ $rows = $query->rowCount();
 
     </section>
     <section class="grid-container">
+        <h3> Latest additions</h3>
         <?php
         foreach ($latests as $latest) {
             echo '<div class="grid-item">';
