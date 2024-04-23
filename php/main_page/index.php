@@ -33,7 +33,8 @@ if (isset($_GET['category'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="navstyle.css">
     <link rel="stylesheet" href="carousel.css">
-    <script type="text/javascript" src="carousel.js"></script>
+    <link rel="stylesheet" href="container.css">
+    <!-- <script type="text/javascript" src="carousel.js"></script> -->
 </head>
 
 <body>
@@ -65,29 +66,30 @@ if (isset($_GET['category'])) {
         </ul>
     </nav>
 
-    <section class="carousel-container">
-    <?php
-    if (!empty($results)) {
-        foreach ($results as $result) {
-            echo '<section class="carousel-slide">';
-            echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
-            $image_url = $result['img_url'];
-            echo '<img src="' . $image_url . '">';
-            echo '</section>';
-        }
-    } elseif (!empty($products)) {
-        foreach ($products as $product) {
-            echo '<section class="carousel-slide">';
-            echo '<h4>' . $product['title'] . '</h4>';
-            $image_url = $product['img_url'];
-            echo '<img src="' . $image_url . '">';
-            echo '</section>';
-        }
-    } else {
-        echo 'No result found';
-    }
-    ?>
-</section>
+    <section class="grid-container">
+        <?php
+            if (!empty($results)) {
+                foreach ($results as $result) {
+                    echo '<div class="grid-item">';
+                    echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
+                    $image_url = $result['img_url'];
+                    echo '<img src="' . $image_url . '">';
+                    echo '</div>';
+                }
+            } elseif (!empty($products)) {
+                foreach ($products as $product) {
+                    echo '<div class="grid-item">';
+                    echo '<h4>' . $product['title'] . '</h4>';
+                    $image_url = $product['img_url'];
+                    echo '<img src="' . $image_url . '">';
+                    echo '</div>';
+                }
+            } else {
+                echo 'No result found';
+            }
+        ?>
+    </section>
+
 
 
 </body>

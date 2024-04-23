@@ -1,0 +1,41 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust width as needed */
+    grid-gap: 20px; /* Adjust gap between items */
+    border: 1px solid red;
+}
+
+.grid-item {
+    overflow: hidden; /* Ensure image does not overflow */
+}
+
+.grid-item img {
+    width: 100%; /* Ensure image fills its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#filters-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    display: grid;
+    grid-auto-flow: column;
+}
+
+#filters-bar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#filters-bar li a:hover {
+    background-color: #04aa6d;
+}
+
+#filters-bar {
+    border: 5px solid yellow;
+}
