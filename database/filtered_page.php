@@ -23,6 +23,18 @@
 
   </header>
   <body>
+      <nav id="filters-bar">
+    <ul>
+      <li><a href="#contag">Clothing</a></li>
+      <li><a href="#contag">Tecnology</a></li>
+      <li><a href="#contag">Sports</a></li>
+      <li><a href="#contag">House and Garden</a></li>
+      <li><a href="#contag">Offers</a></li>
+      <li><a href="#contag">More</a></li>
+    </ul>
+  </nav>
+    </nav>
+      
       
   </body>
 </html>

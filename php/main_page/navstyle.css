@@ -56,6 +56,35 @@ nav input[type=text] {
   ul.topnav li {float: none;}
 }
 
+/* Styles for the navigation bar */
+#filters-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+#filters-bar li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+#filters-bar li a:hover {
+  background-color: #04AA6D;
+}
+
+#filters-bar{
+  border: 5px solid yellow;
+}
+
+
 /* @media print{
 
 } */
