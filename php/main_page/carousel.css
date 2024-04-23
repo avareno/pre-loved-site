@@ -1,0 +1,48 @@
+.carousel-hidden {
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-right: 20px; /* Adjust margin as needed */
+    width: 300px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.carousel-slide img {
+    width: 100%; /* Ensure image fills its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#filters-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    display: grid;
+    grid-auto-flow: column;
+}
+
+#filters-bar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#filters-bar li a:hover {
+    background-color: #04aa6d;
+}
+
+#filters-bar {
+    border: 5px solid yellow;
+}
