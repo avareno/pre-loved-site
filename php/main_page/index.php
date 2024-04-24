@@ -2,35 +2,12 @@
 
 require '../../database/readdbproducts.php';
 
-if (isset($_POST['find'])) {
-    $key = $_POST['key'];
-    $query = $db->prepare('SELECT title, img_url FROM products where title Like :keyword order by title');
-
-    $query->bindValue(':keyword', '%' . $key . '%', PDO::PARAM_STR);
-    $query->execute();
-    $results = $query->fetchAll();
-
-}
-
-if (isset($_GET['category'])) {
-    $category = $_GET['category'];
-
-    $query = $db->prepare('SELECT title, img_url FROM products WHERE category = :category');
-    $query->bindValue(':category', $category, PDO::PARAM_STR);
-    $query->execute();
-    $products = $query->fetchAll();
-    $rows = $query->rowCount();
-}
 
 //fetch latest items
 $query = $db->prepare('SELECT * FROM products ORDER BY created_at DESC LIMIT 5');
 $query->execute();
 $latests = $query->fetchAll();
 $rows = $query->rowCount();
-
-
-
-
 
 ?>
 
@@ -53,9 +30,7 @@ $rows = $query->rowCount();
     <header>
         <nav>
             <ul>
-                <li><img
-                        src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png">
-                </li>
+                <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -77,7 +52,7 @@ $rows = $query->rowCount();
             <li><a href="products.php?category=Home%20&%20Garden">House and Garden</a></li>
             <li><a href="products.php?category=Offers">Offers</a></li>
             <li><a href="products.php?category=More">More</a></li>
-        </ul>
+        </ul>       
     </nav>
     <section class="grid-container">
         <h3> Latest additions</h3>
