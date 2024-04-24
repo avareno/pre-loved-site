@@ -4,11 +4,15 @@ require '../../database/readdbproducts.php';
 
 
 //fetch latest items
-$query = $db->prepare('SELECT * FROM products ORDER BY created_at DESC LIMIT 5');
+$query = $db->prepare('SELECT p.title, i.carousel_img AS carousel_url
+FROM products p
+JOIN images i ON p.id = i.product_id
+ORDER BY p.created_at DESC
+LIMIT 5;
+');
 $query->execute();
 $latests = $query->fetchAll();
 $rows = $query->rowCount();
-
 ?>
 
 <!doctype html>
@@ -54,13 +58,34 @@ $rows = $query->rowCount();
             <li><a href="products.php?category=More">More</a></li>
         </ul>       
     </nav>
+    <section class="container">
+    <section class="slide-wrapper">
+        <section class="slider">
+            <?php
+                foreach ($images as $image) {
+                    $id = $image['product_id'];
+                    $carousel_url = $image['carousel_img'];
+                    echo "<img id=\"slide-$id\" src=\"$carousel_url\"/>";
+                }
+            ?>
+        </section>
+        <section class="slider-nav">
+            <?php
+            foreach($products as $product) {
+                $id = $product["id"];
+                echo "<a href=\"#slide-$id\"></a>";
+            }
+            ?>
+        </section>
+    </section>
+    </section>
     <section class="grid-container">
         <h3> Latest additions</h3>
         <?php
         foreach ($latests as $latest) {
             echo '<div class="grid-item">';
             echo '<h4>' . $latest['title'] . '</h4>';
-            $image_url = $latest['img_url'];
+            $image_url = $latest['carousel_url'];
             echo '<img src="' . $image_url . '">';
             echo '</div>';
         }
