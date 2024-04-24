@@ -70,17 +70,19 @@ if (isset($_GET['category'])) {
         if (!empty($results)) {
             foreach ($results as $result) {
                 echo '<div class="grid-item">';
-                echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
                 $image_url = $result['carousel_img'];
-                echo '<img src="' . $image_url . '">';
+                $title = urlencode($result['title']);
+                echo '<a href="product_profile.php?title=' . urlencode($result['title']) . '"><h4 style="border: 1px solid red">' . $result['title'] . '</h4></a>';
+                echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } elseif (!empty($products)) {
             foreach ($products as $product) {
+                $title = urlencode($product['title']);
                 echo '<div class="grid-item">';
-                echo '<h4>' . $product['title'] . '</h4>';
                 $image_url = $product['carousel_img'];
-                echo '<img src="' . $image_url . '">';
+                echo '<a href="product_profile.php?title=' . $title . '"><h4>' . $product['title'] . '</h4></a>';
+                echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } else {

@@ -83,10 +83,12 @@ $rows = $query->rowCount();
         <h3> Latest additions</h3>
         <?php
         foreach ($latests as $latest) {
+            $id = $latest['id'];
+            $title = urlencode($latest['title']); // URL encode the title
             echo '<div class="grid-item">';
-            echo '<h4>' . $latest['title'] . '</h4>';
+            echo '<h4><a href="product_profile.php?title=' . $title . '">' . $latest['title'] . '</a></h4>';
             $image_url = $latest['carousel_url'];
-            echo '<img src="' . $image_url . '">';
+            echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>'; // Changed image to a link
             echo '</div>';
         }
         ?>
