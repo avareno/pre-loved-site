@@ -1,7 +1,8 @@
 .grid-container {
     display: grid;
     width: 60%;
-    margin: 0 auto; 
+    margin: 5rem auto; 
+    margin-top:2rem;
     grid-template-columns: repeat(auto-fill, minmax(25%, 1fr)); /* Adjust width as needed */
     grid-gap: 0%; /* Adjust gap between items */
     border: 1px solid red;
@@ -16,7 +17,7 @@
 
 .grid-item {
     overflow: hidden; 
-    width: 70%;
+    width: 80%;
     margin: 0 auto; 
     border: 1px solid red;
 }
@@ -25,3 +26,5 @@
     width: 100%; /* Ensure image fills its container */
     height: auto; /* Maintain aspect ratio */
 }
+
+php/template/filters-bar/filters.css

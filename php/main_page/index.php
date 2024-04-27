@@ -31,19 +31,34 @@ $rows = $query->rowCount();
 </head>
 
 <body>
-    <header>
+    <header style = "border:solid 1px blue;">
         <nav>
             <ul>
+                
                 <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="right" >
-                <form method="post" action="products.php"> 
-                    <input type="submit" value="find" name="find">
-                    <input type="text" placeholder="Search..." name="key">
-                </form>
+                <li class="right">
+                    <form method="post" action="products.php"> 
+                        <input type="submit" value="find" name="find" >
+                        <input type="text" placeholder="Search..." name="key">
+                    </form>
                 </li>
+                <?php
+                    session_start(); // Start the session to check user login status
+
+                    // Check if user is already logged in
+                    if(isset($_SESSION['user_id'])) {
+                        // If user is logged in, you can redirect to a dashboard or do nothing
+                        // For now, I'll just do nothing in this case
+                    } else {
+                        // If user is not logged in, display the login/register button
+                        echo '<li class="right"><a href="login.php">Login/Register</a></li>';
+                    }
+                ?>
+
+                
             </ul>
         </nav>
     </header>
@@ -58,27 +73,25 @@ $rows = $query->rowCount();
             <li><a href="products.php?category=More">More</a></li>
         </ul>       
     </nav>
-    <section class="container">
-    <section class="slide-wrapper">
-        <section class="slider">
-            <?php
-                foreach ($images as $image) {
-                    $id = $image['product_id'];
-                    $carousel_url = $image['carousel_img'];
-                    echo "<img id=\"slide-$id\" src=\"$carousel_url\"/>";
+        <section class="slide-wrapper">
+            <section class="slider">
+                <?php
+                    foreach ($images as $image) {
+                        $id = $image['product_id'];
+                        $carousel_url = $image['carousel_img'];
+                        echo "<img id=\"slide-$id\" src=\"$carousel_url\"/>";
+                    }
+                ?>
+            </section>
+            <section class="slider-nav">
+                <?php
+                foreach($products as $product) {
+                    $id = $product["id"];
+                    echo "<a href=\"#slide-$id\"></a>";
                 }
-            ?>
+                ?>
+            </section>
         </section>
-        <section class="slider-nav">
-            <?php
-            foreach($products as $product) {
-                $id = $product["id"];
-                echo "<a href=\"#slide-$id\"></a>";
-            }
-            ?>
-        </section>
-    </section>
-    </section>
     <section class="grid-container">
         <h3> Latest additions</h3>
         <?php

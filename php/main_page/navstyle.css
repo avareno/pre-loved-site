@@ -13,6 +13,7 @@ nav ul li {
   padding-right: 0px;
 }
 
+
 nav ul li a {
   display: block;
   color: black;
@@ -28,6 +29,7 @@ nav ul li a {
 
 nav input[type="submit"] {
   display: none;
+  
 }
 nav ul li a:hover:not(.active) {
   background-color: #04aa6d;
@@ -41,8 +43,13 @@ nav ul li.right {
   float: right;
 }
 
+
 body {
   background-color: white;
+}
+
+form{
+  margin:0 auto;
 }
 
 img {
@@ -54,9 +61,9 @@ img {
 
 nav input[type="text"] {
   border: none;
-  margin: 2px 0px 2px 0px;
-  font-size: 30px;
+  font-size: 30px;  
 }
+
 
 @media screen and (max-width: 600px) {
   ul.topnav li.right,
