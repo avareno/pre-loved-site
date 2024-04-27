@@ -1,4 +1,18 @@
+<?php
+require '../../database/readdbproducts.php';
+$product_id = $_GET['id']; // Assuming you get the product ID from the URL
+$query = $db->prepare('SELECT * FROM products WHERE id = :product_id');
+$query->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+$query->execute();
+$product = $query->fetch(PDO::FETCH_ASSOC);
 
+// If the product is not found, handle the error
+if (!$product) {
+    echo "<p>Error: Product not found.</p>";
+    // You can redirect the user to an error page or display a message
+    exit; // Stop further execution
+}
+?>
 
 
 
@@ -53,12 +67,12 @@
             <img src="image3.jpg" alt="3 Image">
         </section>
         <img src ="main-image.jpg" alt ="Main Image">
-        <h1>Product Name</h1>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Price: $100.00</p>
-        <p>Condition: Used</p>
-        <p>Category: Electronics</p>
-        <p>Seller: John Doe</p>
+        <h1><?php echo $product['title']; ?></h1>
+        <p>Description: <?php echo $product['description']; ?></p>
+        <p>Price: $<?php echo number_format($product['price'], 2); ?></p>
+        <p>Condition: <?php echo $product['condition']; ?></p>
+        <p>Category: <?php echo $product['category']; ?></p>
+        <p>Seller: <?php echo $product['seller_id']; ?></p>
 
 
         <form action="add_to_cart.php" method="post">

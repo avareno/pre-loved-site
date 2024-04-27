@@ -4,7 +4,7 @@ require '../../database/readdbproducts.php';
 
 
 //fetch latest items
-$query = $db->prepare('SELECT p.title, i.carousel_img AS carousel_url
+$query = $db->prepare('SELECT p.id, p.title, i.carousel_img AS carousel_url
 FROM products p
 JOIN images i ON p.id = i.product_id
 ORDER BY p.created_at DESC
@@ -99,9 +99,9 @@ $rows = $query->rowCount();
             $id = $latest['id'];
             $title = urlencode($latest['title']); // URL encode the title
             echo '<div class="grid-item">';
-            echo '<h4><a href="product_profile.php?title=' . $title . '">' . $latest['title'] . '</a></h4>';
+            echo '<h4><a href="product_profile.php?id=' . $id . '">' . $latest['title'] . '</a></h4>';
             $image_url = $latest['carousel_url'];
-            echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>'; // Changed image to a link
+            echo '<a href="product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>'; // Changed image to a link
             echo '</div>';
         }
         ?>

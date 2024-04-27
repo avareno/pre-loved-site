@@ -4,7 +4,7 @@ require '../../database/readdbproducts.php';
 // Handle search
 if (isset($_POST['find'])) {
     $key = $_POST['key'];
-    $query = $db->prepare('SELECT title, carousel_img FROM images where title Like :keyword order by title');
+    $query = $db->prepare('SELECT id, title, carousel_img FROM images where title Like :keyword order by title');
     $query->bindValue(':keyword', '%' . $key . '%', PDO::PARAM_STR);
     $query->execute();
     $results = $query->fetchAll();
@@ -14,7 +14,7 @@ if (isset($_POST['find'])) {
 if (isset($_GET['category'])) {
     $category = $_GET['category'];
     // Assuming $db is your PDO database connection
-    $query = $db->prepare('SELECT p.title, i.carousel_img 
+    $query = $db->prepare('SELECT p.id, p.title, i.carousel_img 
                            FROM products p 
                            JOIN images i ON p.id = i.product_id
                            WHERE p.category = :category');
@@ -69,20 +69,22 @@ if (isset($_GET['category'])) {
         <?php
         if (!empty($results)) {
             foreach ($results as $result) {
+                $id = $result['id'];
                 echo '<div class="grid-item">';
                 $image_url = $result['carousel_img'];
                 $title = urlencode($result['title']);
-                echo '<a href="product_profile.php?title=' . urlencode($result['title']) . '"><h4 style="border: 1px solid red">' . $result['title'] . '</h4></a>';
-                echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>';;
+                echo '<a href="product_profile.php?id=' . $id . '"><h4 style="border: 1px solid red">' . $result['title'] . '</h4></a>';
+                echo '<a href="product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } elseif (!empty($products)) {
             foreach ($products as $product) {
+                $id = $product['id'];
                 $title = urlencode($product['title']);
                 echo '<div class="grid-item">';
                 $image_url = $product['carousel_img'];
-                echo '<a href="product_profile.php?title=' . $title . '"><h4>' . $product['title'] . '</h4></a>';
-                echo '<a href="product_profile.php?title=' . $title . '"><img src="' . $image_url . '"></a>';;
+                echo '<a href="product_profile.php?id=' . $id . '"><h4>' . $product['title'] . '</h4></a>';
+                echo '<a href="product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } else {
