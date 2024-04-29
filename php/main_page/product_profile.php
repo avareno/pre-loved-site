@@ -36,7 +36,7 @@ if (!$product) {
         <nav>
             <ul>
                 <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
-                <li><a class="active" href="#home">Home</a></li>
+                <li><a  href="index.php">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="right" >
