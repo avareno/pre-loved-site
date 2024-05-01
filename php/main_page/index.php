@@ -50,8 +50,7 @@ $rows = $query->rowCount();
 
                     // Check if user is already logged in
                     if(isset($_SESSION['username'])) {
-                        // If user is logged in, you can redirect to a dashboard or do nothing
-                        // For now, I'll just do nothing in this case
+                        echo '<li class="right"><a href="profile.php">Profile</a></li>';
                     } else {
                         echo '<li class="right"><a href="register.php">Login/Register</a></li>';
                     }
