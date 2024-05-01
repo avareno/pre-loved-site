@@ -54,7 +54,7 @@ $rows = $query->rowCount();
                         // For now, I'll just do nothing in this case
                     } else {
                         // If user is not logged in, display the login/register button
-                        echo '<li class="right"><a href="login.php">Login/Register</a></li>';
+                        echo '<li class="right"><a href="register.php">Login/Register</a></li>';
                     }
                 ?>
 

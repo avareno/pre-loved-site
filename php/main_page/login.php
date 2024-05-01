@@ -1,13 +1,6 @@
 <?php
 session_start(); // Start the session
 
-// Check if the user is already logged in, if yes, redirect them to the homepage or dashboard
-// if(isset($_SESSION['user_id'])) {
-//     header("Location: index.php"); // Change 'index.php' to the appropriate URL
-//     exit;
-// }
-
-// Include database connection file
 require_once '../../database/readdbproducts.php';
 
 // Define variables and initialize with empty values
@@ -15,75 +8,74 @@ $username = $password = '';
 $username_err = $password_err = '';
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+
     
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = 'Please enter username.';
-    } else{
-        $username = trim($_POST["username"]);
-    }
+// Check if username is empty
+if(empty(trim($_POST["username"]))){
+    $username_err = 'Please enter username.';
+} else{
+    $username = trim($_POST["username"]);
+}
+
+if(empty(trim($_POST["password"]))){
+    $password_err = 'Please enter your password.';
+} else{
+    $password = trim($_POST["password"]);
+}
+
+// Validate credentials
+if(empty($username_err) && empty($password_err)){
+    // Prepare a select statement
+    $sql = "SELECT id, username, password_hash FROM users WHERE username = ?";
     
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = 'Please enter your password.';
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, username, password_hash FROM users WHERE username = ?";
+    if($stmt = $db->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bind_param("s", $param_username);
         
-        if($stmt = $db->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("s", $param_username);
+        // Set parameters
+        $param_username = $username;
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            // Store result
+            $stmt->store_result();
             
-            // Set parameters
-            $param_username = $username;
-            
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // Store result
-                $stmt->store_result();
-                
-                // Check if username exists, if yes then verify password
-                if($stmt->num_rows == 1){                    
-                    // Bind result variables
-                    $stmt->bind_result($id, $username, $hashed_password);
-                    if($stmt->fetch()){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION['user_id'] = $id;
-                            $_SESSION['username'] = $username;                            
-                            
-                            // Redirect user to homepage or dashboard
-                            header("location: index.php"); // Change 'index.php' to the appropriate URL
-                        } else{
-                            // Display an error message if password is not valid
-                            $password_err = 'The password you entered is not valid.';
-                        }
+            // Check if username exists, if yes then verify password
+            if($stmt->num_rows == 1){                    
+                // Bind result variables
+                $stmt->bind_result($id, $username, $hashed_password);
+                if($stmt->fetch()){
+                    if(password_verify($password, $hashed_password)){
+                        // Password is correct, so start a new session
+                        session_start();
+                        
+                        // Store data in session variables
+                        $_SESSION['user_id'] = $id;
+                        $_SESSION['username'] = $username;                            
+                        
+                        // Redirect user to homepage or dashboard
+                        header("location: index.php"); // Change 'index.php' to the appropriate URL
+                    } else{
+                        // Display an error message if password is not valid
+                        $password_err = 'The password you entered is not valid.';
                     }
-                } else{
-                    // Display an error message if username doesn't exist
-                    $username_err = 'No account found with that username.';
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                // Display an error message if username doesn't exist
+                $username_err = 'No account found with that username.';
             }
-
-            // Close statement
-            $stmt->close();
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
         }
+
+        // Close statement
+        $stmt->close();
     }
-    
-    // Close connection
-    $db->close();
 }
+
+// Close connection
+$db->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Include your stylesheet here -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="wrapper">

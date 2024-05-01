@@ -1,11 +1,4 @@
 <?php
-session_start(); // Start the session
-
-// Check if the user is already logged in, if yes, redirect them to the homepage or dashboard
-if(isset($_SESSION['user_id'])) {
-    header("Location: index.php"); // Change 'index.php' to the appropriate URL
-    exit;
-}
 
 // Include database connection file
 require_once 'database_connection.php'; // Change 'database_connection.php' to the appropriate file path
