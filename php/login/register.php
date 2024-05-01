@@ -1,7 +1,7 @@
 <?php
     session_start(); // Start the session
 
-    require '../../database/read_tables.php';
+    require '../../database/readdbproducts.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if the form has been submitted
@@ -40,7 +40,7 @@
             }
 
             if(!empty($errors)) {
-                $login_err = $errors[0];
+                echo $errors[0] . "<br>";
             } else {
                 $query = "SELECT * FROM USERS WHERE username = :username OR email = :email";
                 $stmt = $db->prepare($query);
@@ -49,9 +49,9 @@
                 $stmt->execute();
                 $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
                 if($existingUser){
-                    $login_err = 'Username or email already exists';
+                    echo 'Username or email already exists';
                 } else {
-                    $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+                    $hashed_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     
                     $insert_stmt = 'INSERT INTO users (username, email, password, permissions) VALUES (:username, :email, :password, "user")';
                     $insert_query = $db->prepare($insert_stmt);
@@ -59,9 +59,6 @@
                     $insert_query->bindParam(":email", $email);
                     $insert_query->bindParam(":password", $hashed_pass);
                     $insert_query->execute();
-
-                    header("location: index.php");
-                    exit;
                 }
             }
         }
@@ -92,10 +89,6 @@
         <input type="password" id="password-conf" name="password-conf" required><br><br>
 
         <input type="submit" value="Register">
-
-        <?php if (isset($login_err)) { ?>
-            <p class="error"><?php echo $login_err; ?></p>
-        <?php } ?>
     </form>
     <p>Already have an account? <a href="login.php">Log in here</a></p>
 </body>

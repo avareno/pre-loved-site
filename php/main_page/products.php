@@ -1,5 +1,5 @@
 <?php
-require '../../database/readdbproducts.php';
+require '../../database/read_tables.php';
 
 // Handle search
 if (isset($_POST['find'])) {

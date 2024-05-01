@@ -1,6 +1,6 @@
 <?php
 
-require '../../database/readdbproducts.php';
+require '../../database/read_tables.php';
 
 
 //fetch latest items
@@ -49,11 +49,10 @@ $rows = $query->rowCount();
                     session_start(); // Start the session to check user login status
 
                     // Check if user is already logged in
-                    if(isset($_SESSION['user_id'])) {
+                    if(isset($_SESSION['username'])) {
                         // If user is logged in, you can redirect to a dashboard or do nothing
                         // For now, I'll just do nothing in this case
                     } else {
-                        // If user is not logged in, display the login/register button
                         echo '<li class="right"><a href="register.php">Login/Register</a></li>';
                     }
                 ?>
