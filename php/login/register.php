@@ -1,7 +1,8 @@
 <?php
     session_start(); // Start the session
 
-    require '../../database/readdbproducts.php';
+    require '../../database/read_tables.php';
+    $db = getDatabaseConnection();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if the form has been submitted
@@ -40,7 +41,7 @@
             }
 
             if(!empty($errors)) {
-                echo $errors[0] . "<br>";
+                $login_err = $errors[0];
             } else {
                 $query = "SELECT * FROM USERS WHERE username = :username OR email = :email";
                 $stmt = $db->prepare($query);
@@ -49,9 +50,9 @@
                 $stmt->execute();
                 $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
                 if($existingUser){
-                    echo 'Username or email already exists';
+                    $login_err = 'Username or email already exists';
                 } else {
-                    $hashed_pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
                     
                     $insert_stmt = 'INSERT INTO users (username, email, password, permissions) VALUES (:username, :email, :password, "user")';
                     $insert_query = $db->prepare($insert_stmt);
@@ -59,6 +60,10 @@
                     $insert_query->bindParam(":email", $email);
                     $insert_query->bindParam(":password", $hashed_pass);
                     $insert_query->execute();
+
+                    $_SESSION['username'] = $username;
+                    header("location: index.php");
+                    exit;
                 }
             }
         }
@@ -71,7 +76,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
     <h2>Registration Form</h2>
@@ -89,6 +94,10 @@
         <input type="password" id="password-conf" name="password-conf" required><br><br>
 
         <input type="submit" value="Register">
+
+        <?php if (isset($login_err)) { ?>
+            <p class="error"><?php echo $login_err; ?></p>
+        <?php } ?>
     </form>
     <p>Already have an account? <a href="login.php">Log in here</a></p>
 </body>

@@ -1,15 +1,17 @@
 <?php
-    $db = new PDO('sqlite:database.db'); 
 
-    $stmt = $db->prepare('Select * from products ');
-    $stmt->execute();
-    $products = $stmt->fetchAll();
 
-    $stmt = $db->prepare('Select * from images ');
-    $stmt->execute();
-    $images = $stmt->fetchAll();
+    declare(stricttypes = 1);
 
-    $stmt = $db->prepare('SELECT * FROM USERS');
-    $stmt->execute();
-    $users = $stmt->fetchAll();
+    function getDatabaseConnection() : PDO {
+        try {
+
+            $db = new PDO('sqlite:' . __DIR__ . '/database.db');
+            return $db;
+        } catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+            exit();
+        }
+    }
+
 ?>
