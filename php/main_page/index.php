@@ -1,18 +1,26 @@
 <?php
 
-require '../../database/read_tables.php';
+    require'../../database/read_tables.php';
+    $db = getDatabaseConnection();
 
-
-//fetch latest items
-$query = $db->prepare('SELECT p.title, i.carousel_img AS carousel_url
-FROM products p
-JOIN images i ON p.id = i.product_id
-ORDER BY p.created_at DESC
-LIMIT 5;
-');
-$query->execute();
-$latests = $query->fetchAll();
-$rows = $query->rowCount();
+    
+    $query = $db->prepare('SELECT p.title, i.carousel_img AS carousel_url
+    FROM products p
+    JOIN images i ON p.id = i.product_id
+    ORDER BY p.created_at DESC
+    LIMIT 5;
+    ');
+    $query->execute();
+    $latests = $query->fetchAll();
+    $rows = $query->rowCount();
+    
+    $stmt = $db->prepare('Select * from images ');
+    $stmt->execute();
+    $images = $stmt->fetchAll();
+    
+    $stmt = $db->prepare('Select * from products ');
+    $stmt->execute();
+    $products = $stmt->fetchAll();
 ?>
 
 <!doctype html>
@@ -23,10 +31,10 @@ $rows = $query->rowCount();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="navstyle.css">
-    <link rel="stylesheet" href="carousel.css">
-    <link rel="stylesheet" href="container.css">
-    <link rel="stylesheet" href="filters.css">
+    <link rel="stylesheet" href="../../css/navstyle.css">
+    <link rel="stylesheet" href="../../css/carousel.css">
+    <link rel="stylesheet" href="../../css/container.css">
+    <link rel="stylesheet" href="../../css/filters.css">
     <!-- <script type="text/javascript" src="carousel.js"></script> -->
 </head>
 
@@ -40,7 +48,7 @@ $rows = $query->rowCount();
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="right">
-                    <form method="post" action="products.php"> 
+                    <form method="post" action="../products_page/products.php"> 
                         <input type="submit" value="find" name="find" >
                         <input type="text" placeholder="Search..." name="key">
                     </form>
@@ -50,9 +58,9 @@ $rows = $query->rowCount();
 
                     // Check if user is already logged in
                     if(isset($_SESSION['username'])) {
-                        echo '<li class="right"><a href="profile.php">Profile</a></li>';
+                        echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
                     } else {
-                        echo '<li class="right"><a href="register.php">Login/Register</a></li>';
+                        echo '<li class="right"><a href="../login/register.php">Login/Register</a></li>';
                     }
                 ?>
 
@@ -63,21 +71,23 @@ $rows = $query->rowCount();
 
     <nav id="filters-bar">
         <ul>
-            <li><a href="products.php?category=Clothing">Clothing</a></li>
-            <li><a href="products.php?category=Electronics">Electronics</a></li>
-            <li><a href="products.php?category=Sports">Sports</a></li>
-            <li><a href="products.php?category=Home%20&%20Garden">House and Garden</a></li>
-            <li><a href="products.php?category=Offers">Offers</a></li>
-            <li><a href="products.php?category=More">More</a></li>
+            <li><a href="../products_page/products.php?category=Clothing">Clothing</a></li>
+            <li><a href="../products_page/products.php?category=Electronics">Electronics</a></li>
+            <li><a href="../products_page/products.php?category=Sports">Sports</a></li>
+            <li><a href="../products_page/products.php?category=Home%20&%20Garden">House and Garden</a></li>
+            <li><a href="../products_page/products.php?category=Offers">Offers</a></li>
+            <li><a href="../products_page/products.php?category=More">More</a></li>
         </ul>       
     </nav>
         <section class="slide-wrapper">
             <section class="slider">
                 <?php
+                
                     foreach ($images as $image) {
                         $id = $image['product_id'];
-                        $carousel_url = $image['carousel_img'];
+                        $carousel_url = $image['carousel_img'];                        
                         echo "<img id=\"slide-$id\" src=\"$carousel_url\"/>";
+                        
                     }
                 ?>
             </section>

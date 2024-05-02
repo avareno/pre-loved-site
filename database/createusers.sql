@@ -4,12 +4,12 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR NOT NULL,
     permissions VARCHAR(50) NOT NULL DEFAULT 'user',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image VARCHAR DEFAULT '../../assets/Default_pfp.svg.png'
 );
 
 
 INSERT INTO users (username, email, password, permissions) VALUES 
-    ('luis', 'luis@example.com', '12345', 'admin'),
-    ('miguel', 'miguel@example.com', '12345', 'admin'),
-    ('tomas', 'tomas@example.com', '12345', 'admin')
+    ('admin','admin@m.m','$2y$10$SlJh9XD5Cm8UXvS0Q8xwUeNFAY4wvVN/wlU4crXOLgNIoJAhGNGSG','admin')/*admin, admin123
+
 ;

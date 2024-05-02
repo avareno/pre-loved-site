@@ -19,6 +19,7 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
 label {
     display: block;
     font-weight: bold;
@@ -48,4 +49,18 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #04aa6d;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p a {
+    color: #007bff; /* Blue color */
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
 }
