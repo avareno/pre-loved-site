@@ -7,7 +7,7 @@ $db = getDatabaseConnection();
 // Handle search
 if (isset($_POST['find'])) {
     $key = $_POST['key'];
-    $query = $db->prepare('SELECT title, carousel_img FROM images where title Like :keyword order by title');
+    $query = $db->prepare('SELECT id, title, carousel_img FROM images where title Like :keyword order by title');
     $query->bindValue(':keyword', '%' . $key . '%', PDO::PARAM_STR);
     $query->execute();
     $results = $query->fetchAll();
@@ -72,18 +72,20 @@ if (isset($_GET['category'])) {
         <?php
         if (!empty($results)) {
             foreach ($results as $result) {
+                $id = $result['id'];
                 echo '<div class="grid-item">';
-                echo '<h4 style="border: 1px solid red">' . $result['title'] . '</h4>';
+                echo '<a href="product_profile.php?id=' . $id . '"><h4 style="border: 1px solid red">' . $result['title'] . '</h4></a>';
                 $image_url = $result['carousel_img'];
-                echo '<img src="' . $image_url . '">';
+                echo '<a href="product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } elseif (!empty($products)) {
             foreach ($products as $product) {
+                $id = $product['id'];
                 echo '<div class="grid-item">';
-                echo '<h4>' . $product['title'] . '</h4>';
+                echo '<a href="product_profile.php?id=' . $id . '"><h4>' . $product['title'] . '</h4></a>';
                 $image_url = $product['carousel_img'];
-                echo '<img src="' . $image_url . '">';
+                echo '<a href="product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>';;
                 echo '</div>';
             }
         } else {

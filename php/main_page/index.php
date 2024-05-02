@@ -4,7 +4,7 @@
     $db = getDatabaseConnection();
 
     
-    $query = $db->prepare('SELECT p.title, i.carousel_img AS carousel_url
+    $query = $db->prepare('SELECT p.id, p.title, i.carousel_img AS carousel_url
     FROM products p
     JOIN images i ON p.id = i.product_id
     ORDER BY p.created_at DESC
