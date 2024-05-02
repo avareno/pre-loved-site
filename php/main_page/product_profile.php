@@ -1,5 +1,5 @@
 <?php
-require '../../database/readdbproducts.php';
+require '../../database/read_tables.php';
 $product_id = $_GET['id']; // Assuming you get the product ID from the URL
 $query = $db->prepare('SELECT * FROM products WHERE id = :product_id');
 $query->bindValue(':product_id', $product_id, PDO::PARAM_INT);
