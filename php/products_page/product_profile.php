@@ -2,33 +2,38 @@
 require '../../database/read_tables.php';
 $db = getDatabaseConnection();
 $product_id = $_GET['id']; // Assuming you get the product ID from the URL
+
+// Fetch product details
 $query = $db->prepare('SELECT * FROM products WHERE id = :product_id');
 $query->bindValue(':product_id', $product_id, PDO::PARAM_INT);
 $query->execute();
 $product = $query->fetch(PDO::FETCH_ASSOC);
 
-// If the product is not found, handle the error
-if (!$product) {
-    echo "<p>Error: Product not found.</p>";
+// Fetch product image URL
+$imageQuery = $db->prepare('SELECT carousel_img FROM images WHERE product_id = :product_id LIMIT 1');
+$imageQuery->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+$imageQuery->execute();
+$productImage = $imageQuery->fetch(PDO::FETCH_ASSOC);
+
+// If the product is not found or image URL is not available, handle the error
+if (!$product || !$productImage) {
+    echo "<p>Error: Product not found or image not available.</p>";
     // You can redirect the user to an error page or display a message
     exit; // Stop further execution
 }
 ?>
 
-
-
 <!doctype html>
 <html lang="en">
 
 <head>
-<title>LTW</title>
+    <title>LTW</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../../css/navstyle.css">
-    <link rel="stylesheet" href="../../css/carousel.css">
     <link rel="stylesheet" href="../../css/container.css">
-    <link rel="stylesheet" href="../../css/filters.css">
     <link rel="stylesheet" href="../../css/product_profile.css">
+    <link rel="stylesheet" href="../../css/filters.css">
 </head>
 
 <body>
@@ -62,9 +67,9 @@ if (!$product) {
 
     <section class="grid-container">
         <section class="product-images">
-            
+            <!-- Display product image -->
+            <img src="<?php echo $productImage['carousel_img']; ?>" alt="Product Image">
         </section>
-        <img src ="main-image.jpg" alt ="Main Image">
         <h1><?php echo $product['title']; ?></h1>
         <p>Description: <?php echo $product['description']; ?></p>
         <p>Price: $<?php echo number_format($product['price'], 2); ?></p>
@@ -72,9 +77,8 @@ if (!$product) {
         <p>Category: <?php echo $product['category']; ?></p>
         <p>Seller: <?php echo $product['seller_id']; ?></p>
 
-
         <form action="add_to_cart.php" method="post">
-            <input type="hidden" name="product_id" value="1">
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
             <input type="submit" value="Add to Cart">
         </form>
     </section>
