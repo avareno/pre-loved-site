@@ -1,5 +1,6 @@
 <?php
 require '../../database/read_tables.php';
+$db = getDatabaseConnection();
 $product_id = $_GET['id']; // Assuming you get the product ID from the URL
 $query = $db->prepare('SELECT * FROM products WHERE id = :product_id');
 $query->bindValue(':product_id', $product_id, PDO::PARAM_INT);
@@ -20,15 +21,14 @@ if (!$product) {
 <html lang="en">
 
 <head>
-    <title>LTW</title>
-    <!-- Required meta tags -->
+<title>LTW</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="navstyle.css">
-    <link rel="stylesheet" href="carousel.css">
-    <link rel="stylesheet" href="container.css">
-    <link rel="stylesheet" href="filters.css">
-    <!-- <script type="text/javascript" src="carousel.js"></script> -->
+    <link rel="stylesheet" href="../../css/navstyle.css">
+    <link rel="stylesheet" href="../../css/carousel.css">
+    <link rel="stylesheet" href="../../css/container.css">
+    <link rel="stylesheet" href="../../css/filters.css">
+    <link rel="stylesheet" href="../../css/product_profile.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@ if (!$product) {
         <nav>
             <ul>
                 <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
-                <li><a  href="index.php">Home</a></li>
+                <li><a  href="../main_page/index.php">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="right" >
@@ -62,9 +62,7 @@ if (!$product) {
 
     <section class="grid-container">
         <section class="product-images">
-            <img src="image1.jpg" alt="1 Image">
-            <img src="image2.jpg" alt="2 Image">
-            <img src="image3.jpg" alt="3 Image">
+            
         </section>
         <img src ="main-image.jpg" alt ="Main Image">
         <h1><?php echo $product['title']; ?></h1>

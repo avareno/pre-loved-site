@@ -17,7 +17,7 @@ if (isset($_POST['find'])) {
 if (isset($_GET['category'])) {
     $category = $_GET['category'];
     // Assuming $db is your PDO database connection
-    $query = $db->prepare('SELECT p.title, i.carousel_img 
+    $query = $db->prepare('SELECT p.id, p.title, i.carousel_img 
                            FROM products p 
                            JOIN images i ON p.id = i.product_id
                            WHERE p.category = :category');
