@@ -53,6 +53,9 @@ if (isset($_GET['category'])) {
                         <input type="text" placeholder="Search..." name="key">
                     </form>
                 </li>
+                <li class="right">
+                <a href="../cart/cart.php">Cart</a>
+                </li>
                 <?php
                     session_start(); // Start the session to check user login status
 

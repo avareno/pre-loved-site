@@ -1,8 +1,7 @@
 <?php
 session_start(); // Inicia a sessão
-require'../../database/read_tables.php'; // Include only once at the beginning
+require '../../database/read_tables.php'; // Include only once at the beginning
 $db = getDatabaseConnection();
-
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['username'])) {
@@ -24,6 +23,11 @@ if (isset($_POST['product_id'])) {
     $query->bindValue(':user_id', $user_id, PDO::PARAM_STR);
     $query->bindValue(':product_id', $product_id, PDO::PARAM_INT);
     $query->execute();
+
+    // Decrementa a quantidade do produto na tabela products
+    $decrementQuery = $db->prepare('UPDATE products SET quantity = 0 WHERE id = :product_id');
+    $decrementQuery->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $decrementQuery->execute();
 
     // Redireciona de volta à página do produto com uma mensagem de sucesso
     header("Location: ../products_page/product_profile.php?id=$product_id&added_to_cart=true");

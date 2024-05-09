@@ -6,6 +6,7 @@ CREATE TABLE products(
     condition VARCHAR(50),
     category VARCHAR(100),
     seller_id INT NOT NULL,
+    quantity INTEGER DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

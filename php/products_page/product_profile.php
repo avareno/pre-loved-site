@@ -28,6 +28,7 @@ if (!$product || !$productImage) {
 
 <head>
     <title>LTW</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../../css/navstyle.css">
@@ -45,10 +46,13 @@ if (!$product || !$productImage) {
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="right" >
-                <form method="post" action="products.php"> 
-                    <input type="submit" value="find" name="find">
-                    <input type="text" placeholder="Search..." name="key">
-                </form>
+                    <form method="post" action="products.php"> 
+                        <input type="submit" value="find" name="find">
+                        <input type="text" placeholder="Search..." name="key">
+                    </form>
+                </li>
+                <li class="right">
+                <a href="../cart/cart.php">Cart</a>
                 </li>
                 <?php
                     session_start(); // Start the session to check user login status
@@ -87,12 +91,21 @@ if (!$product || !$productImage) {
         <p>Category: <?php echo $product['category']; ?></p>
         <p>Seller: <?php echo $product['seller_id']; ?></p>
 
-        <form action="../cart/add_to_cart.php" method="post">
-            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-            <input type="submit" value="Add to Cart">
-        </form>
+        <!-- Verifica se a quantidade do produto é maior que zero -->
+        <?php if ($product['quantity'] > 0): ?>
+            <!-- Se a quantidade for maior que zero, exibe o botão de adicionar ao carrinho -->
+            <form action="../cart/add_to_cart.php" method="post">
+                <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                <input type="submit" value="Add to Cart">
+            </form>
+        <?php else: ?>
+            <!-- Se a quantidade for zero, desativa o botão de adicionar ao carrinho e exibe a mensagem -->
+            <button disabled>Add to Cart</button>
+            <p>Produto Indisponivel</p>
+        <?php endif; ?>
     </section>
 
 </body>
 
 </html>
+
