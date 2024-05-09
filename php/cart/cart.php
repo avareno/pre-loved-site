@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
 $user_id = $_SESSION['username'];
 
 // Obtém os detalhes dos produtos no carrinho do usuário
-$query = $db->prepare('SELECT products.id, products.title FROM shopping_cart JOIN products ON shopping_cart.product_id = products.id WHERE shopping_cart.user_id = :user_id');
+$query = $db->prepare('SELECT products.id, products.title, products.description, images.carousel_img FROM shopping_cart JOIN products ON shopping_cart.product_id = products.id JOIN images ON products.title = images.title WHERE shopping_cart.user_id = :user_id');
 $query->bindValue(':user_id', $user_id, PDO::PARAM_STR);
 $query->execute();
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -33,6 +33,7 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../../css/carousel.css">
     <link rel="stylesheet" href="../../css/container.css">
     <link rel="stylesheet" href="../../css/filters.css">
+    <link rel="stylesheet" href="../../css/shopping_cart.css">
 </head>
 
 <body>
@@ -77,19 +78,22 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="grid-container">
         <h1>Carrinho de Compras</h1>
-        <?php if (count($products) > 0): ?>
+        <?php if (count($products) > 0) : ?>
             <ul>
-            <?php foreach ($products as $product): ?>
-                <li>
-                    <?php echo $product['title']; ?>
-                    <form action="../cart/remove_from_cart.php" method="post">
-                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                        <button type="submit" name="remove_from_cart">Remover do Carrinho</button>
-                    </form>
-                </li>
-            <?php endforeach; ?>
+            <?php foreach ($products as $product) : ?>
+        <li>
+            <img src="<?php echo $product['carousel_img']; ?>" alt="<?php echo $product['title']; ?>"> <!-- Aqui está a imagem do produto -->
+            <p class="product-title"><?php echo $product['title']; ?></p>
+            <p class="product-description"><?php echo $product['description']; ?></p> <!-- Aqui está a descrição do produto -->
+            <form action="../cart/remove_from_cart.php" method="post">
+                <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                <button type="submit" name="remove_from_cart">Remover do Carrinho</button>
+            </form>
+        </li>
+    <?php endforeach; ?>
+
             </ul>
-        <?php else: ?>
+        <?php else : ?>
             <p>O seu carrinho está vazio.</p>
         <?php endif; ?>
     </section>

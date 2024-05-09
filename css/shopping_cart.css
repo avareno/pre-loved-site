@@ -1,0 +1,64 @@
+/* Estilos para a seção do carrinho de compras */
+.grid-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.grid-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.grid-container li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.grid-container li img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.grid-container li .product-info {
+    flex: 1;
+}
+
+.grid-container li .product-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #111;
+}
+
+.grid-container li .product-price {
+    font-size: 16px;
+    color: #c45500; /* Cor de laranja */
+}
+
+.grid-container li button {
+    background-color: #ff9900; /* Laranja */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.grid-container li button:hover {
+    background-color: #e68a00; /* Laranja mais escura */
+}
