@@ -53,7 +53,18 @@ if (isset($_GET['category'])) {
                         <input type="text" placeholder="Search..." name="key">
                     </form>
                 </li>
+                <?php
+                    session_start(); // Start the session to check user login status
+
+                    // Check if user is already logged in
+                    if(isset($_SESSION['username'])) {
+                        echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
+                    } else {
+                        echo '<li class="right"><a href="../login/register.php">Login/Register</a></li>';
+                    }
+                ?>
             </ul>
+            
         </nav>
     </header>
 

@@ -50,6 +50,16 @@ if (!$product || !$productImage) {
                     <input type="text" placeholder="Search..." name="key">
                 </form>
                 </li>
+                <?php
+                    session_start(); // Start the session to check user login status
+
+                    // Check if user is already logged in
+                    if(isset($_SESSION['username'])) {
+                        echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
+                    } else {
+                        echo '<li class="right"><a href="../login/register.php">Login/Register</a></li>';
+                    }
+                ?>
             </ul>
         </nav>
     </header>
@@ -77,7 +87,7 @@ if (!$product || !$productImage) {
         <p>Category: <?php echo $product['category']; ?></p>
         <p>Seller: <?php echo $product['seller_id']; ?></p>
 
-        <form action="add_to_cart.php" method="post">
+        <form action="../cart/add_to_cart.php" method="post">
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
             <input type="submit" value="Add to Cart">
         </form>

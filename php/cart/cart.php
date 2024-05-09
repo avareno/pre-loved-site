@@ -1,27 +1,25 @@
 <?php
+session_start(); // Inicia a sessão
+require'../../database/read_tables.php'; // Include only once at the beginning
+$db = getDatabaseConnection();
 
-    require'../../database/read_tables.php';
-    $db = getDatabaseConnection();
+// Verifica se o usuário está logado
+if (!isset($_SESSION['username'])) {
+    // Redireciona para a página de login se não estiver logado
+    header("Location: ../login/login.php");
+    exit;
+}
 
-    
-    $query = $db->prepare('SELECT p.id, p.title, i.carousel_img AS carousel_url
-    FROM products p
-    JOIN images i ON p.id = i.product_id
-    ORDER BY p.created_at DESC
-    LIMIT 5;
-    ');
-    $query->execute();
-    $latests = $query->fetchAll();
-    $rows = $query->rowCount();
-    
-    $stmt = $db->prepare('Select * from images ');
-    $stmt->execute();
-    $images = $stmt->fetchAll();
-    
-    $stmt = $db->prepare('Select * from products ');
-    $stmt->execute();
-    $products = $stmt->fetchAll();
+// Obtém o user_id da sessão
+$user_id = $_SESSION['username'];
+
+// Obtém os detalhes dos produtos no carrinho do usuário
+$query = $db->prepare('SELECT products.title FROM shopping_cart JOIN products ON shopping_cart.product_id = products.id WHERE shopping_cart.user_id = :user_id');
+$query->bindValue(':user_id', $user_id, PDO::PARAM_STR);
+$query->execute();
+$products = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -80,45 +78,19 @@
             <li><a href="../products_page/products.php?category=More">More</a></li>
         </ul>       
     </nav>
-        <section class="slide-wrapper">
-            <section class="slider">
-                <?php
-                
-                    foreach ($images as $image) {
-                        $id = $image['product_id'];
-                        $carousel_url = $image['carousel_img'];                        
-                        echo "<img id=\"slide-$id\" src=\"$carousel_url\"/>";
-                        
-                    }
-                ?>
-            </section>
-            <section class="slider-nav">
-                <?php
-                foreach($products as $product) {
-                    $id = $product["id"];
-                    echo "<a href=\"#slide-$id\"></a>";
-                }
-                ?>
-            </section>
-        </section>
+
     <section class="grid-container">
-        <h3> Latest additions</h3>
-        <?php
-        foreach ($latests as $latest) {
-            $id = $latest['id'];
-            $title = urlencode($latest['title']); // URL encode the title
-            echo '<div class="grid-item">';
-            echo '<h4><a href="../products_page/product_profile.php?id=' . $id . '">' . $latest['title'] . '</a></h4>'; // Update the link
-            $image_url = $latest['carousel_url'];
-            echo '<a href="../products_page/product_profile.php?id=' . $id . '"><img src="' . $image_url . '"></a>'; // Changed image to a link
-            echo '</div>';
-        }
-        
-        ?>
+        <h1>Carrinho de Compras</h1>
+        <?php if (count($products) > 0): ?>
+            <ul>
+                <?php foreach ($products as $product): ?>
+                    <li><?php echo $product['title']; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>O seu carrinho está vazio.</p>
+        <?php endif; ?>
     </section>
-
-
-
 </body>
 
 </html>
