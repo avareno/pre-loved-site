@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <header style = "border:solid 1px blue;">
+    <header>
         <nav>
             <ul>
                 

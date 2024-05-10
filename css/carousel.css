@@ -13,7 +13,6 @@
     border-radius: 0.5rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    border: 3px solid blue;
     width: 60%; 
     height:400px;
     overflow: hidden;

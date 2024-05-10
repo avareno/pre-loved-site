@@ -1,11 +1,9 @@
-/* Resetting default margin and padding */
 body, h1, h2, p, ul, li {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #f2f2f2;
 }
 
@@ -35,6 +33,9 @@ nav ul li a {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
@@ -43,13 +44,49 @@ section {
 }
 
 section img {
-    max-width: 200px;
+    max-width: 100%;
     border-radius: 50%;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.profile-image-container {
+    text-align: center;
+}
+
+.profile-image-container img {
+    width: 15em; /* Fixed width */
+    height: 15em; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    border-radius: 50%; /* Apply circular border radius */
+    border: 2px solid #fff; /* Add a white border around the circular image */
+    overflow: hidden; /* Hide any overflow */
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2%; /* Relative padding */
+    margin: 1%; /* Relative margin */
+    width: 25em; /* Relative width */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 2%; /* Relative margin */
 }
 
 footer {
     background-color: #04aa6d;
     color: #fff;
-    padding: 10px 0;
+    padding: 1% 0; /* Relative padding */
     text-align: center;
+    width: 100%;
 }

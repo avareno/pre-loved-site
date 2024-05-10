@@ -5,7 +5,6 @@
     margin-top:2rem;
     grid-template-columns: repeat(auto-fill, minmax(25%, 1fr)); /* Adjust width as needed */
     grid-gap: 0%; /* Adjust gap between items */
-    border: 1px solid red;
 }
 
 .grid-container h3{
@@ -19,7 +18,6 @@
     overflow: hidden; 
     width: 80%;
     margin: 0 auto; 
-    border: 1px solid red;
 }
 
 .grid-item img {
