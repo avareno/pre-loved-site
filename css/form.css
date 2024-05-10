@@ -1,0 +1,54 @@
+/* form.css */
+
+/* Apply grid layout to the main section */
+main {
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+}
+
+/* Apply grid layout to the form */
+main form {
+    display: grid;
+    gap: 10px;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Style labels */
+main form label {
+    font-weight: bold;
+}
+
+/* Style input fields */
+main form input[type="text"],
+main form input[type="number"],
+main form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Style submit button */
+main form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for submit button */
+main form input[type="submit"]:hover {
+    background-color: #0056b3;
+}

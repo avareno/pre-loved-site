@@ -6,12 +6,16 @@ $db = getDatabaseConnection();
 
 $username = $_SESSION['username'];
 
-// Fetch user information including the profile image URL from the database
+// Fetch user information including the profile image URL and role from the database
 $query = "SELECT * FROM users WHERE username = :username";
 $stmt = $db->prepare($query);
 $stmt->bindParam(":username", $username);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Check if the user has admin or seller role
+$is_admin = $row['permissions'] === 'admin';
+$is_seller = $row['permissions'] === 'seller';
 
 ?>
 
@@ -31,6 +35,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         <nav>
             <ul>
                 <li><a href="../main_page/index.php">Home</a></li>
+                <?php if ($is_admin || $is_seller) : ?>
+                    <li><a href="../sell_items/sell_page.php">Sell</a></li>
+                <?php endif; ?>
                 <li><a href="#">Settings</a></li>
                 <li><a href="../logout/logout.php">Logout</a></li>
             </ul>
