@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="description">Description:</label><br>
                 <textarea id="description" name="description" required></textarea><br>
                 <label for="price">Price:</label><br>
-                <input type="number" id="price" name="price" step="0.01" required><br>
+                <input type="number" id="price" name="price" step="10" required><br>
                 <label for="condition">Condition:</label><br>
                 <input type="text" id="condition" name="condition"><br>
                 <label for="category">Category:</label><br>
