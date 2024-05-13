@@ -1,0 +1,29 @@
+.change_foto_container {
+  margin: 1% 0;
+  display: flex;
+  align-items: center;
+}
+.change_foto_container img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.submit-button {
+  background-color: #04aa6d; /* Green */
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
