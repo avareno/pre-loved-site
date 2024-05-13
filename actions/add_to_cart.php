@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-require '../../../database/read_tables.php'; // Include only once at the beginning
+require '../database/read_tables.php'; // Include only once at the beginning
 $db = getDatabaseConnection();
 
 // Verifica se o usuário está logado
@@ -30,7 +30,7 @@ if (isset($_POST['product_id'])) {
     $decrementQuery->execute();
 
     // Redireciona de volta à página do produto com uma mensagem de sucesso
-    header("Location: ../products_page/product_profile.php?id=$product_id&added_to_cart=true");
+    header("Location: ../pages/products_page/product_profile.php?id=$product_id&added_to_cart=true");
     exit;
 } else {
     // Se o product_id não foi enviado, redireciona para uma página de erro
