@@ -5,7 +5,11 @@ CREATE TABLE users (
     password VARCHAR NOT NULL,
     permissions VARCHAR(50) NOT NULL DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    image VARCHAR DEFAULT '../../assets/Default_pfp.svg.png'
+    small_description VARCHAR(255),
+    Country Varchar(50),
+    city VARCHAR(50),
+    phone_number VARCHAR(13),
+    image VARCHAR DEFAULT '../../../assets/Default_pfp.svg.png'
 );
 
 

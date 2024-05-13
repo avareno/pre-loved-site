@@ -9,13 +9,20 @@ body {
 
 header {
     background-color: #04aa6d;
-    color: #fff;
+    color: #f2f2f2;
     padding: 20px;
     text-align: center;
 }
 
 header h1 {
     margin-bottom: 10px;
+}
+
+nav {
+    background-color: #04aa6d;
+    color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
 }
 
 nav ul {
@@ -39,15 +46,6 @@ main {
     padding: 20px;
 }
 
-section {
-    margin-bottom: 20px;
-}
-
-section img {
-    max-width: 100%;
-    border-radius: 50%;
-}
-
 .products-container {
     display: flex;
     flex-wrap: wrap;
@@ -59,8 +57,8 @@ section img {
 }
 
 .profile-image-container img {
-    width: 15em; /* Fixed width */
-    height: 15em; /* Fixed height */
+    width: 15rem; /* Fixed width */
+    height: 15rem; /* Fixed height */
     object-fit: cover; /* Maintain aspect ratio and cover container */
     border-radius: 50%; /* Apply circular border radius */
     border: 2px solid #fff; /* Add a white border around the circular image */

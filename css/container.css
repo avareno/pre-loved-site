@@ -25,3 +25,31 @@
     height: auto; /* Maintain aspect ratio */
 }
 
+.settings-container{
+    display:flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2%; /* Relative padding */
+    margin: 1%; /* Relative margin */
+    width: 94%; /* Relative width */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 0rem 2rem 0 0;
+
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    width:90%;
+  }

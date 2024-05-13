@@ -20,11 +20,11 @@
             $password_conf = $_POST['password-conf'];
         }
 
-        // Check if any field is empty
+
         if(empty($username) || empty($email) || empty($password) || empty($password_conf)){
             echo 'Fill all the fields to register';
         } else {
-            // Check password strength
+
             $errors = [];
             if(strlen($password) < 8) {
                 $errors[] = "Password must be at least 8 characters long";
@@ -76,7 +76,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../../css/login.css">
 </head>
 <body>
     <h2>Registration Form</h2>

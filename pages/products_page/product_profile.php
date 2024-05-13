@@ -31,10 +31,10 @@ if (!$product || !$productImage) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../css/navstyle.css">
-    <link rel="stylesheet" href="../../css/container.css">
-    <link rel="stylesheet" href="../../css/product_profile.css">
-    <link rel="stylesheet" href="../../css/filters.css">
+    <link rel="stylesheet" href="../../../css/navstyle.css">
+    <link rel="stylesheet" href="../../../css/container.css">
+    <link rel="stylesheet" href="../../../css/product_profile.css">
+    <link rel="stylesheet" href="../../../css/filters.css">
 </head>
 
 <body>
@@ -94,7 +94,7 @@ if (!$product || !$productImage) {
         <!-- Verifica se a quantidade do produto é maior que zero -->
         <?php if ($product['quantity'] > 0): ?>
             <!-- Se a quantidade for maior que zero, exibe o botão de adicionar ao carrinho -->
-            <form action="../cart/add_to_cart.php" method="post">
+            <form action="../../actions/add_to_cart.php" method="post">
                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                 <input type="submit" value="Add to Cart">
             </form>
