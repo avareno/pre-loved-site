@@ -8,9 +8,9 @@ require_once '../../utils/getters.php';
 
 $db = getDatabaseConnection();
 
-if (!isset($_SESSION['username'])) {
-    header("Location: ../main_page/index.php"); // Redirect to index.php
-    exit(); // Stop further execution
+if (!isset($_SESSION['username'])) {        //utils
+    header("Location: ../main_page/index.php");
+    exit();
 }
 
 $username = $_SESSION['username'];
@@ -36,5 +36,6 @@ $products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 draw_header($username,$is_admin, $is_seller,"profile");
 draw_profile_main($row, $username, $products);
+//draw footer
 ?>
 
