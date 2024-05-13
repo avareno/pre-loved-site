@@ -26,14 +26,14 @@ if ($user) {
 $default_image_url = 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     // Retrieve form data
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $condition = $_POST['condition'];
     $category = $_POST['category'];
-    
+
     // Insert product into database
     $query = "INSERT INTO products (title, description, price, condition, category, seller_id) VALUES (:title, :description, :price, :condition, :category, :seller_id)";
     $stmt = $db->prepare($query);
@@ -43,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(":condition", $condition);
     $stmt->bindParam(":category", $category);
     $stmt->bindParam(":seller_id", $seller_id);
-    
+
     // Execute the query
     if ($stmt->execute()) {
         // Get the ID of the newly inserted product
         $product_id = $db->lastInsertId();
-        
+
         // Insert default image URL into the images table
         $query = "INSERT INTO images (title, img_url, carousel_img, product_id) VALUES (:title, :img_url, :carousel_img, :product_id)";
         $stmt = $db->prepare($query);
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(":img_url", $default_image_url);
         $stmt->bindParam(":carousel_img", $default_image_url); // Using the same default image URL for carousel image
         $stmt->bindParam(":product_id", $product_id);
-        
+
         // Execute the query
         if ($stmt->execute()) {
             echo "Product added successfully.";
@@ -90,28 +90,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <header>
-        <nav>
+        <nav id="navbar">
             <ul>
-                <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
-                <li><a  href="../main_page/index.php">Home</a></li>
+                <li><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png">
+                </li>
+                <li><a href="../main_page/index.php">Home</a></li>
                 <li><a href="filtered_page.php">News</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="right" >
-                    <form method="post" action="../products_page/products.php"> 
+                <li class="right">
+                    <form method="post" action="../products_page/products.php">
                         <input type="submit" value="find" name="find">
-                        <input type="text" placeholder="Search..." name="key">
+                        <section class="group">
+                            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                                <g>
+                                    <path
+                                        d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <input placeholder="Search" type="search" class="input">
+                        </section>
                     </form>
                 </li>
                 <li class="right">
-                <a href="../cart/cart.php">Cart</a>
+                    <a href="../cart/cart.php">Cart</a>
                 </li>
                 <?php
-                    // Check if user is already logged in
-                    if(isset($_SESSION['username'])) {
-                        echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
-                    } else {
-                        echo '<li class="right"><a href="../login/register.php">Login/Register</a></li>';
-                    }
+                // Check if user is already logged in
+                if (isset($_SESSION['username'])) {
+                    echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
+                } else {
+                    echo '<li class="right"><a href="../login/register.php">Login/Register</a></li>';
+                }
                 ?>
             </ul>
         </nav>
@@ -125,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="../products_page/products.php?category=Home%20&%20Garden">House and Garden</a></li>
             <li><a href="../products_page/products.php?category=Offers">Offers</a></li>
             <li><a href="../products_page/products.php?category=More">More</a></li>
-        </ul>       
+        </ul>
     </nav>
     <main>
         <section>
