@@ -1,32 +1,16 @@
 <?php
 session_start();
 
-require '../../database/read_tables.php';
+require '../../../database/read_tables.php';
 $db = getDatabaseConnection();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: ../main_page/index.php"); // Redirect to index.php
+    exit(); // Stop further execution
+}
 
 $username = $_SESSION['username'];
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile-image'])) {
-    // Check if a file is uploaded
-    if ($_FILES['profile-image']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../../assets/';
-        $uploadFile = $uploadDir . basename($_FILES['profile-image']['name']);
-
-        // Move the uploaded file to the designated directory
-        if (move_uploaded_file($_FILES['profile-image']['tmp_name'], $uploadFile)) {
-            // File uploaded successfully, update the image path in the database
-            $imagePath = $uploadFile;
-            $query = "UPDATE users SET image = :image WHERE username = :username";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':image', $imagePath);
-            $stmt->bindParam(':username', $username);
-            $stmt->execute();
-        } else {
-            echo "Failed to upload file.";
-        }
-    }
-}
 
 // Fetch user information including the profile image URL and role from the database
 $query = "SELECT * FROM users WHERE username = :username";
@@ -55,7 +39,7 @@ $products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../css/dashboard.css"> <!-- Replace with your CSS file -->
+    <link rel="stylesheet" href="../../../css/dashboard.css"> <!-- Replace with your CSS file -->
 </head>
 
 <body>
@@ -68,7 +52,7 @@ $products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li><a href="../sell_items/sell_page.php">Sell</a></li>
                 <?php endif; ?>
                 <li><a href="settings.php">Settings</a></li>
-                <li><a href="../logout/logout.php">Logout</a></li>
+                <li><a href="../../actions/logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -104,7 +88,6 @@ $products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
     <footer>
         <p>© <?php echo date("Y"); ?> Your Company Name. All rights reserved.</p>
     </footer>
-    <script src="../../js/add_image.js"> </script>
 
 </body>
 

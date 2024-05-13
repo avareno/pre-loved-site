@@ -9,7 +9,7 @@ CREATE TABLE users (
     Country Varchar(50),
     city VARCHAR(50),
     phone_number VARCHAR(13),
-    image VARCHAR DEFAULT '../../assets/Default_pfp.svg.png'
+    image VARCHAR DEFAULT '../../../assets/Default_pfp.svg.png'
 );
 
 

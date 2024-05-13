@@ -1,5 +1,5 @@
 <?php
-require '../../database/read_tables.php';
+require '../../../database/read_tables.php';
 
 $db = getDatabaseConnection();
 
@@ -34,10 +34,10 @@ if (isset($_GET['category'])) {
     <title>LTW</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../css/navstyle.css">
-    <link rel="stylesheet" href="../../css/carousel.css">
-    <link rel="stylesheet" href="../../css/container.css">
-    <link rel="stylesheet" href="../../css/filters.css">
+    <link rel="stylesheet" href="../../../css/navstyle.css">
+    <link rel="stylesheet" href="../../../css/carousel.css">
+    <link rel="stylesheet" href="../../../css/container.css">
+    <link rel="stylesheet" href="../../../css/filters.css">
 </head>
 <body>
     <header>
@@ -57,9 +57,8 @@ if (isset($_GET['category'])) {
                 <a href="../cart/cart.php">Cart</a>
                 </li>
                 <?php
-                    session_start(); // Start the session to check user login status
-
-                    // Check if user is already logged in
+                    session_start(); 
+                    
                     if(isset($_SESSION['username'])) {
                         echo '<li class="right"><a href="../profile/profile.php">Profile</a></li>';
                     } else {

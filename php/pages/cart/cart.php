@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-require '../../database/read_tables.php'; // Include only once at the beginning
+require '../../../database/read_tables.php'; // Include only once at the beginning
 $db = getDatabaseConnection();
 
 // Verifica se o usuário está logado
@@ -29,11 +29,11 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../css/navstyle.css">
-    <link rel="stylesheet" href="../../css/carousel.css">
-    <link rel="stylesheet" href="../../css/container.css">
-    <link rel="stylesheet" href="../../css/filters.css">
-    <link rel="stylesheet" href="../../css/shopping_cart.css">
+    <link rel="stylesheet" href="../../../css/navstyle.css">
+    <link rel="stylesheet" href="../../../css/carousel.css">
+    <link rel="stylesheet" href="../../../css/container.css">
+    <link rel="stylesheet" href="../../../css/filters.css">
+    <link rel="stylesheet" href="../../../css/shopping_cart.css">
 </head>
 
 <body>

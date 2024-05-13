@@ -1,6 +1,6 @@
 <?php
 
-    require'../../database/read_tables.php';
+    require'../../../database/read_tables.php';
     $db = getDatabaseConnection();
 
     
@@ -31,11 +31,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../css/navstyle.css">
-    <link rel="stylesheet" href="../../css/carousel.css">
-    <link rel="stylesheet" href="../../css/container.css">
-    <link rel="stylesheet" href="../../css/filters.css">
-    <!-- <script type="text/javascript" src="carousel.js"></script> -->
+    <link rel="stylesheet" href="../../../css/navstyle.css">
+    <link rel="stylesheet" href="../../../css/carousel.css">
+    <link rel="stylesheet" href="../../../css/container.css">
+    <link rel="stylesheet" href="../../../css/filters.css">
+
 </head>
 
 <body>
