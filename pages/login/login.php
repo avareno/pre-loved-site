@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session
-require '../../../database/read_tables.php';
+require '../../database/read_tables.php';
 $db = getDatabaseConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (isset($_POST['password'])) {
         $password = $_POST['password'];
-
     }
     // Check if any field is empty
     if (empty($username) || empty($password)) {

@@ -1,5 +1,5 @@
 <?php
-require '../../../database/read_tables.php';
+require '../../database/read_tables.php';
 
 $db = getDatabaseConnection();
 

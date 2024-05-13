@@ -1,5 +1,5 @@
 <?php
-require '../../../database/read_tables.php';
+require '../../database/read_tables.php';
 $db = getDatabaseConnection();
 $product_id = $_GET['id']; // Assuming you get the product ID from the URL
 

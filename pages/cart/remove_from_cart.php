@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-require '../../../database/read_tables.php'; // Include only once at the beginning
+require '../../database/read_tables.php'; // Include only once at the beginning
 $db = getDatabaseConnection();
 
 // Verifica se o usuário está logado

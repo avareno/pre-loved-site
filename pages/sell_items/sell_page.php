@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require '../../../database/read_tables.php';
+require '../../database/read_tables.php';
 $db = getDatabaseConnection();
 
 $username = $_SESSION['username'];

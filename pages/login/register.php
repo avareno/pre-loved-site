@@ -1,7 +1,7 @@
 <?php
     session_start(); // Start the session
 
-    require '../../../database/read_tables.php';
+    require '../../database/read_tables.php';
     $db = getDatabaseConnection();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
