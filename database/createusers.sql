@@ -7,8 +7,8 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     small_description VARCHAR(255),
     country Varchar(50),
-    city VARCHAR(50),
-    phone_number VARCHAR(13),
+    city VARCHAR(50) ,
+    phone_number VARCHAR(13) UNIQUE,
     image VARCHAR DEFAULT '../../../assets/Default_pfp.svg.png'
 );
 

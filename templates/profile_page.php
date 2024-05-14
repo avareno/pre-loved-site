@@ -1,5 +1,5 @@
 <?php
-function draw_profile_main($row, $username, $products){
+function draw_profile_main($row, $username, $products, $db){
 ?>
     <main>
         <section>
@@ -13,18 +13,21 @@ function draw_profile_main($row, $username, $products){
         </section>
         <section>
             <h2>Products on Sale</h2>
-            <div class="products-container">
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <img src="<?php echo $product['image']; ?>" alt="Product Image">
+            <section class="products-container">
+                <?php foreach ($products as $product):
+                    $product_id = $product['id'];
+                    $productImage = fetchData($db, 'SELECT carousel_img FROM images WHERE product_id = :product_id LIMIT 1', [':product_id' => $product_id]);
+                ?>
+                    <section class="product-card">
+                        <img src="<?php echo $productImage['carousel_img']; ?>" alt="Product Image">
                         <h3><?php echo $product['title']; ?></h3>
                         <p><strong>Description:</strong> <?php echo $product['description']; ?></p>
                         <p><strong>Price:</strong> $<?php echo $product['price']; ?></p>
                         <p><strong>Condition:</strong> <?php echo $product['condition']; ?></p>
                         <p><strong>Category:</strong> <?php echo $product['category']; ?></p>
-                    </div>
+                    </section>
                 <?php endforeach; ?>
-            </div>
+            </section>
         </section>
     </main>
 
