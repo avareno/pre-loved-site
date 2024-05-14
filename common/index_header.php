@@ -20,6 +20,7 @@ function drawHtmlStart() {
         <link rel="stylesheet" href="../../../css/carousel.css">
         <link rel="stylesheet" href="../../../css/container.css">
         <link rel="stylesheet" href="../../../css/filters.css">
+        <link rel="stylesheet" href="../../../css/shopping_cart.css">
     </head>
     <body>
     <header>

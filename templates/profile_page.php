@@ -9,6 +9,21 @@ function draw_profile_main($row, $username, $products, $db){
             <section>
                 <p>Username: <?php echo $username; ?></p>
                 <p>Email: <?php echo $row['email']; ?></p>
+                <?php if (!empty(trim($row['small_description'])) || !empty(trim($row['country'])) || !empty(trim($row['city'])) || !empty(trim($row['phone_number']))): ?>
+                    <h3>Additional Information:</h3>
+                    <?php if (!empty(trim($row['small_description']))): ?>
+                        <p>Small Description: <?php echo $row['small_description']; ?></p>
+                    <?php endif; ?>
+                    <?php if (!empty(trim($row['country']))): ?>
+                        <p>Country: <?php echo $row['country']; ?></p>
+                    <?php endif; ?>
+                    <?php if (!empty(trim($row['city']))): ?>
+                        <p>City: <?php echo $row['city']; ?></p>
+                    <?php endif; ?>
+                    <?php if (!empty(trim($row['phone_number']))): ?>
+                        <p>Phone Number: <?php echo $row['phone_number']; ?></p>
+                    <?php endif; ?>
+                <?php endif; ?>
             </section>
         </section>
         <section>
