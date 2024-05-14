@@ -7,32 +7,17 @@ require_once '../../templates/profile_page.php';
 require_once '../../utils/getters.php';
 
 $db = getDatabaseConnection();
-
-if (!isset($_SESSION['username'])) {        //utils
-    header("Location: ../main_page/index.php");
-    exit();
-}
+checkSessionAndRedirect("../main_page/index.php");
 
 $username = $_SESSION['username'];
 
-// Fetch user information including the profile image URL and role from the database
-$query = "SELECT * FROM users WHERE username = :username";
-$stmt = $db->prepare($query);
-$stmt->bindParam(":username", $username);
-$stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$row = getUserByUsername($db, $username);
 
 // Check if the user has admin or seller role
 $is_admin = $row['permissions'] === 'admin';
 $is_seller = $row['permissions'] === 'seller';
 
-// Fetch products associated with the logged-in user
-$product_query = "SELECT * FROM products WHERE seller_id = :seller_id";
-$product_stmt = $db->prepare($product_query);
-$product_stmt->bindParam(":seller_id", $row['id']);
-$product_stmt->execute();
-$products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$products = getProductsBySellerId($db, $row['id']);
 
 draw_header($username,$is_admin, $is_seller,"profile");
 draw_profile_main($row, $username, $products);
