@@ -54,7 +54,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                             <h4>Country:</h4>
                             <section>
                                 <form method="post">
-                                    <input type="text" name="country" id="country" value="<?php echo $row['Country']; ?>">
+                                    <input type="text" name="country" id="country" value="<?php echo $row['country']; ?>">
                                     <button class="submit-button" type="submit">Change Country</button>
                                 </form>
                             </section>
