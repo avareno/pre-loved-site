@@ -13,6 +13,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
         <link rel="stylesheet" href="../../../css/dashboard.css">
         <link rel="stylesheet" href="../../../css/container.css">
         <script src="../../../js/change_link.js" defer></script>
+        <script src="../../../js/change_permission.js" defer></script>
 
     </head>
     <section>
@@ -97,16 +98,23 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                             <?php if (!$is_seller && !$is_admin) { ?>
 
                                 <h4>Become Seller:</h4>
-                                <label class="switch">
-                                  <input type="checkbox">
-                                  <span class="slider round"></span>
-                                </label>
+
+                                <form method="post">
+                                    <input type="hidden" name="become_seller" id="become_seller">
+                                    <label class="switch">
+                                        <input type="checkbox" id="seller_checkbox" name="seller_input" value="seller_input">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </form>
                             <?php } else if ($is_seller) { ?>
                                     <h4>Become User:</h4>
-                                    <label class="switch">
-                                      <input type="checkbox">
-                                      <span class="slider round"></span>
-                                    </label>
+                                    <form method="post">
+                                        <input type="hidden" name="become_user" id="become_user">
+                                        <label class="switch">
+                                            <input type="checkbox" id="user_checkbox" name="user_input" value="user_input">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </form>
                             <?php } ?>
                         </section>
                     </section>
