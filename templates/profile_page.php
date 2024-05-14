@@ -26,6 +26,7 @@ function draw_profile_main($row, $username, $products, $db){
                 <?php endif; ?>
             </section>
         </section>
+    <?php if($row['permissions'] === 'seller' || $row['permissions'] === 'admin'){ ?>
         <section>
             <h2>Products on Sale</h2>
             <section class="products-container">
@@ -44,6 +45,7 @@ function draw_profile_main($row, $username, $products, $db){
                 <?php endforeach; ?>
             </section>
         </section>
+    <?php }?>
     </main>
 
 <?php
