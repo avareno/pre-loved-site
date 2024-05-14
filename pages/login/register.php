@@ -64,5 +64,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-fetch_head(["username","email","password","password-conf"],["text","email","password","password"],["username","email","password","password-conf"],["username","email","password","password-conf"],["Username","Email","Password","Password Confirmation"],true);
+fetch_head(["username","email","password","password-conf"],["text","email","password","password"],["username","email","password","password-conf"],["username","email","password","password-conf"],["Username","Email","Password","Password Confirmation"],true,$login_err);
 ?>

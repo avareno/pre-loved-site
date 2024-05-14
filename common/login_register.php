@@ -1,4 +1,4 @@
-<?php function fetch_head($for,$type,$id,$name,$title,$is_register){?>
+<?php function fetch_head($for,$type,$id,$name,$title,$is_register,$login_err){?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
