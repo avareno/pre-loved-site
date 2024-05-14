@@ -84,7 +84,9 @@ main {
 footer {
     background-color: #04aa6d;
     color: #fff;
-    padding: 1% 0; /* Relative padding */
+    padding: 1% 0;
     text-align: center;
     width: 100%;
+    position: fixed;
+    bottom: 0;
 }

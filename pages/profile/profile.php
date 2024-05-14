@@ -3,6 +3,7 @@ session_start();
 
 require_once '../../database/read_tables.php';
 require_once '../../common/dashboard_header.php';
+require_once '../../common/dashboard_footer.php';
 require_once '../../templates/profile_page.php';
 require_once '../../utils/getters.php';
 
@@ -21,6 +22,6 @@ $products = getProductsBySellerId($db, $row['id']);
 
 draw_header($username,$is_admin, $is_seller,"profile");
 draw_profile_main($row, $username, $products,$db);
-//draw footer
+draw_footer()
 ?>
 

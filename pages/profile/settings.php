@@ -3,6 +3,7 @@ session_start();
 
 require_once '../../database/read_tables.php';
 require_once '../../common/dashboard_header.php';
+require_once '../../common/dashboard_footer.php';
 require_once '../../templates/settings_page.php';
 require_once '../../actions/upload_image.php';
 require_once '../../actions/update_field.php';
@@ -50,4 +51,5 @@ $products = getProductsBySellerId($db, $row['id']);
 
 draw_header($username, $is_admin, $is_seller, "settings");
 draw_settings_page($username, $is_admin, $is_seller, $row);
+draw_footer()
 ?>
