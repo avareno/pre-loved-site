@@ -1,7 +1,7 @@
 <?php
-    require_once'../../database/read_tables.php';
-    require_once'../../common/index_header.php';
-    require_once'../../templates/index_page.php';
+    require_once '../../database/read_tables.php';
+    require_once '../../common/index_header.php';
+    require_once '../../templates/index_page.php';
 
     $db = getDatabaseConnection();
     
