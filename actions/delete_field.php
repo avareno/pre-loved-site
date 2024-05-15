@@ -21,4 +21,27 @@ function deleteFieldProducts($db, $product_id)
     $stmt->bindParam(':product_id', $product_id);
     $stmt->execute();
 }
+
+
+
+function deleteFieldCart($db, $product_id, $username)
+{
+
+    $queryIncreaseQuantity = $db->prepare('UPDATE products SET quantity = 1 WHERE id = :product_id');
+    $queryIncreaseQuantity->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $queryIncreaseQuantity->execute();
+
+    $queryRemoveFromCart = $db->prepare('DELETE FROM shopping_cart WHERE user_id = :user_id AND product_id = :product_id');
+    $queryRemoveFromCart->bindValue(':user_id', $username, PDO::PARAM_STR);
+    $queryRemoveFromCart->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $queryRemoveFromCart->execute();
+
+
+
+}
+
+
 ?>
+
+
+

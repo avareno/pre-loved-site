@@ -13,7 +13,7 @@ function drawShoppingCart($db, $products){
             <img src="<?php echo $product['carousel_img']; ?>" alt="<?php echo $product['title']; ?>"> 
             <p class="product-title"><?php echo $product['title']; ?></p>
             <p class="product-description"><?php echo $product['description']; ?></p> 
-            <form action="../cart/remove_from_cart.php" method="post">
+            <form action="../../actions/remove_from_cart.php" method="post">
                 <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                 <button type="submit" name="remove_from_cart">Remover do Carrinho</button>
             </form>
