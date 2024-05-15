@@ -1,8 +1,8 @@
 CREATE TABLE images(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(50) REFERENCES products(title),
-    img_url VARCHAR,
-    carousel_img VARCHAR,
+    img_url VARCHAR DEFAULT '../../assets/images.png',--remover isto da db
+    carousel_img VARCHAR DEFAULT '../../assets/images.png',
     product_id INTEGER,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
