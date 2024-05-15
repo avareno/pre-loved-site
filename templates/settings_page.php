@@ -38,12 +38,9 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                                 <img id="profile-image" src="<?php echo $row['image']; ?>" alt="Profile Image">
                             </section>
                             <section>
-                                <form method="post" action="../../actions/add_info_user.php">
-                                    <input type="file" name="profile-image" id="profile-image-input" accept="image/*"
-                                        style="display: none;" onchange="this.form.submit()">
-                                    <button class="submit-button" type="button"
-                                        onclick="document.getElementById('profile-image-input').click();">Change
-                                        Image</button>
+                                <form method="post" action="../../actions/add_info_user.php" enctype="multipart/form-data">
+                                    <input type="file" name="profile-image" id="profile-image-input" style="display: none;" onchange="this.form.submit()">
+                                    <button class="submit-button" type="button" onclick="document.getElementById('profile-image-input').click();">Change Image</button>
                                 </form>
                             </section>
                         </section>

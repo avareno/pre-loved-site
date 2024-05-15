@@ -2,6 +2,7 @@
 
 require_once '../database/read_tables.php';
 require_once '../actions/update_field.php';
+require_once '../actions/upload_image.php';
 require_once '../utils/getters.php';
 
 session_start();
@@ -15,7 +16,7 @@ $username = $_SESSION['username'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['profile-image'])) {
-        uploadImage($db, $username, $imageFile);
+        uploadImage($db, $username, $_FILES['profile-image']);
         header("Location: ../pages/profile/settings.php");
         exit;
     } elseif (isPostParamSet("country")) {
@@ -42,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         updateFieldUsers($db, $username, 'phone_number', $_POST["phone_number"]);
         header("Location: ../pages/profile/settings.php");
         exit;
+    }else{
+        echo '404';
     }
 
 }
