@@ -7,16 +7,18 @@ require_once '../../utils/getters.php';
 
 $db = getDatabaseConnection();
 
-// Get the username from URL parameters
+// Get the user ID from URL parameters
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $user_id = $_GET['id'];
 } else {
-    // Redirect or show an error message if the username parameter is not provided
-    exit("Username parameter is missing.");
+    // Redirect or show an error message if the user ID parameter is not provided
+    exit("User ID parameter is missing.");
 }
 
+$row = getUserByUserId($db, $user_id);
 
-$row = getUserByUserId($db, $id);
+// Proceed with displaying the user's profile
+
 
 // Check if the user has admin or seller role
 $is_admin = $row['permissions'] === 'admin';

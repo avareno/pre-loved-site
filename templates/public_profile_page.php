@@ -14,7 +14,11 @@ function drawHeader($username)
 
 function drawProfileSection($row)
 {
+    session_start();
+    // Check if the logged-in user is an admin
+    $is_admin = ((isset($_SESSION['permissions']) && $_SESSION['permissions'] === 'admin') && ($row['permissions']!='admin'));
     ?>
+
     <section class="profile">
         <div class="profile-image-container">
             <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Profile Picture">
@@ -31,10 +35,21 @@ function drawProfileSection($row)
                     <p><?php echo htmlspecialchars($row['small_description']); ?></p>
                 </div>
             <?php endif; ?>
-            <!-- Add more profile information here as needed -->
+            
+            <!-- Display the promote to admin button if the logged-in user is admin -->
+            <?php if ($is_admin): ?>
+                <form action="../../actions/promote_to_admin.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                    <input type="submit" value="Promote to Admin">
+                </form>
+                <form action="../../actions/ban.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                    <input type="submit" value="Ban User">
+                </form>
+            <?php endif; ?>
         </div>
     </section>
-    <?php
+<?php
 }
 
 

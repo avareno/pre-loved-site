@@ -25,7 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user) {
             if (password_verify($password, $user['password'])) {
 
+                $row = getUserByUsername($db, $username);
+
                 $_SESSION['username'] = $username;
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['permissions'] = $row['permissions'];
                 header("location: ../main_page/index.php");
                 exit;
             } else {

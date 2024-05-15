@@ -56,7 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 createUser($db, $username, $email, $hashed_pass);
 
+                $row = getUserByUsername($db, $username);
+
                 $_SESSION['username'] = $username;
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['permissions'] = $row['permissions'];
                 header("location: ../main_page/index.php");
                 exit;
             }

@@ -40,7 +40,7 @@
     }
 
     function isPostParamSet($paramName) {
-            return isset($_POST[$paramName]);
+        return isset($_POST[$paramName]);
     }
 
     function isGetParamSet($paramName) {
