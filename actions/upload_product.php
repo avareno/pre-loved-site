@@ -1,4 +1,6 @@
 <?php
+require_once 'query_execute.php';
+
 function uploadProduct($db, $username, $imageFile, $title, $description, $price, $condition, $category, $seller_id)
 {
     // Check if an image file is uploaded
@@ -12,57 +14,61 @@ function uploadProduct($db, $username, $imageFile, $title, $description, $price,
         if (move_uploaded_file($imageFile['tmp_name'], $uploadPath)) {
             // Insert product into database
             $query = "INSERT INTO products (title, description, price, condition, category, seller_id) VALUES (:title, :description, :price, :condition, :category, :seller_id)";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(":title", $title);
-            $stmt->bindParam(":description", $description);
-            $stmt->bindParam(":price", $price);
-            $stmt->bindParam(":condition", $condition);
-            $stmt->bindParam(":category", $category);
-            $stmt->bindParam(":seller_id", $seller_id);
+            $params = [
+                ':title' => $title,
+                ':description' => $description,
+                ':price' => $price,
+                ':condition' => $condition,
+                ':category' => $category,
+                ':seller_id' => $seller_id
+            ];
 
             // Execute the query
-            if($stmt->execute()) {
+            if(executeQuery($db, $query, $params)) {
                 // Get the ID of the newly inserted product
                 $product_id = $db->lastInsertId();
 
                 // Insert the uploaded image path into the images table
                 $image_url = '../../assets/' . $filename;
                 $query = "INSERT INTO images (title, img_url, carousel_img, product_id) VALUES (:title, :img_url, :carousel_img, :product_id)";
-                $stmt = $db->prepare($query);
-                $stmt->bindParam(":title", $title);
-                $stmt->bindParam(":img_url", $image_url);
-                $stmt->bindParam(":carousel_img", $image_url); // Same as img_url for default value
-                $stmt->bindParam(":product_id", $product_id);
+                $params = [
+                    ':title' => $title,
+                    ':img_url' => $image_url,
+                    ':carousel_img' => $image_url,
+                    ':product_id' => $product_id
+                ];
 
                 // Execute the query
-                $stmt->execute();
+                executeQuery($db, $query, $params);
             }
         }
     } else {
         // If no image file is uploaded, insert the product with default values for img_url and carousel_img
         // Insert product into database
         $query = "INSERT INTO products (title, description, price, condition, category, seller_id) VALUES (:title, :description, :price, :condition, :category, :seller_id)";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(":title", $title);
-        $stmt->bindParam(":description", $description);
-        $stmt->bindParam(":price", $price);
-        $stmt->bindParam(":condition", $condition);
-        $stmt->bindParam(":category", $category);
-        $stmt->bindParam(":seller_id", $seller_id);
+        $params = [
+            ':title' => $title,
+            ':description' => $description,
+            ':price' => $price,
+            ':condition' => $condition,
+            ':category' => $category,
+            ':seller_id' => $seller_id
+        ];
 
         // Execute the query
-        if($stmt->execute()) {
+        if(executeQuery($db, $query, $params)) {
             // Get the ID of the newly inserted product
             $product_id = $db->lastInsertId();
 
             // Insert product with default values for img_url and carousel_img
-            $query = "INSERT INTO images (title,product_id) VALUES (:title,  :product_id)";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(":title", $title);
-            $stmt->bindParam(":product_id", $product_id);
+            $query = "INSERT INTO images (title,product_id) VALUES (:title, :product_id)";
+            $params = [
+                ':title' => $title,
+                ':product_id' => $product_id
+            ];
 
             // Execute the query
-            $stmt->execute();
+            executeQuery($db, $query, $params);
         }
     }
 }
