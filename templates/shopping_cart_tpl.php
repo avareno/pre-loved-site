@@ -21,6 +21,9 @@ function drawShoppingCart($db, $products){
     <?php endforeach; ?>
 
             </ul>
+            <form action="../checkout/checkout.php" method="post">
+                <button type="submit">Fazer Checkout</button>
+            </form>
         <?php else : ?>
             <p>O seu carrinho está vazio.</p>
         <?php endif; ?>

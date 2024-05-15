@@ -26,6 +26,7 @@ function drawHtmlStart()
         <link rel="stylesheet" href="../../../css/form.css">
         <link rel="stylesheet" href="../../../css/shopping_cart.css">
         <script src="../../js/sidebar.js"></script>
+        <script src="../../js/payment_methods.js"></script>
     </head>
 
     <?php
