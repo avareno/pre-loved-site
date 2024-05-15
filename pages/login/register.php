@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
 
-require_once '../../database/read_tables.php';
+require '../../database/read_tables.php';
 require_once '../../utils/getters.php';
 require_once '../../actions/add_user.php';
 require_once '../../common/login_register.php';
@@ -64,5 +64,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-fetch_head(["username","email","password","password-conf"],["text","email","password","password"],["username","email","password","password-conf"],["username","email","password","password-conf"],["Username","Email","Password","Password Confirmation"],true);
+fetch_head(["username","email","password","password-conf"],["text","email","password","password"],["username","email","password","password-conf"],["username","email","password","password-conf"],["Username","Email","Password","Password Confirmation"],true,$login_err);
 ?>

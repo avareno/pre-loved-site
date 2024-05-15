@@ -22,3 +22,8 @@
     background-color: #04AA6D;
 }
 
+@media (max-width: 768px) {
+    #filters-bar ul {
+        display: none; /* Stack filters vertically on smaller screens */
+    }
+}

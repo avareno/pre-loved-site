@@ -37,5 +37,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-fetch_head(["username","password"],["text","password"],["username","password"],["username","password"],["Username","Password"],false);
+fetch_head(["username","password"],["text","password"],["username","password"],["username","password"],["Username","Password"],false,$login_err);
 ?>
