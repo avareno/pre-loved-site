@@ -2,7 +2,7 @@
 function draw_profile_main($row, $username, $products, $db){
 ?>
     <main>
-        <section>
+        <section id="im">
             <section class="profile-image-container">
                 <img id="profile-image" src="<?php echo $row['image']; ?>" alt="Profile Image">
             </section>
