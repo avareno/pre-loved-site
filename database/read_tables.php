@@ -1,6 +1,4 @@
 <?php
-
-
     declare(stricttypes = 1);
 
     function getDatabaseConnection() : PDO {
