@@ -15,6 +15,12 @@ $images = fetchDataAll($db, 'SELECT * FROM IMAGES');
 
 $products = fetchDataAll($db, 'SELECT * FROM products');
 
+if (isPostParamSet('find')) {
+    $key = '%' . $_POST['key'] . '%';
+    $query = '';
+    $results = fetchDataAll($db, $query, [':keyword' => $key]);
+}
+
 drawHeader();
 
 drawIndexMain($images, $products, $latests);
