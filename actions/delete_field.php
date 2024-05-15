@@ -10,7 +10,7 @@ function deleteFieldUsers($db, $username)
 
 function deleteFieldProducts($db, $product_id)
 {
-
+    var_dump($product_id);
     $query = "DELETE FROM Products WHERE id = :product_id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':product_id', $product_id);

@@ -45,22 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (isPostParamSet("phone_number")) {
         // Handle phone number update
         updateFieldUsers($db, $username, 'phone_number', $_POST["phone_number"]);
-    } elseif (isPostParamSet("become_seller")) {
-        // Handle seller update
-        updateFieldUsers($db, $username, 'permissions', 'seller');
-    } elseif (isPostParamSet("become_user")) {
-        // Handle seller update
-        if (!$products) {
-            updateFieldUsers($db, $username, 'permissions', 'user');
-        } else {
-            //pop-up mesage saying the user has items in it's page
-            echo '<script>alert("The user has products in their page.");</script>';
-        }
     }
 
 }
 
 draw_header($username, $is_admin, $is_seller, "settings");
 draw_settings_page($username, $is_admin, $is_seller, $row);
-draw_footer()
-    ?>
+draw_footer();
+?>

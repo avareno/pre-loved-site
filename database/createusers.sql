@@ -3,7 +3,7 @@ CREATE TABLE users (
     username VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR NOT NULL,
-    permissions VARCHAR(50) NOT NULL DEFAULT 'user',
+    permissions VARCHAR(50) NOT NULL DEFAULT 'seller',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     small_description VARCHAR(255),
     country Varchar(50),

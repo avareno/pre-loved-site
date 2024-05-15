@@ -14,8 +14,11 @@
             <label for="<?php echo $for[$i]; ?>"><?php echo $title[$i]; ?></label><br>
             <input type="<?php echo $type[$i]; ?>" id="<?php echo $id[$i]; ?>" name="<?php echo $name[$i]; ?>" required><br><br>
         <?php } ?>
-        <input type="submit" value="Register">
-
+        <?php if($is_register){ ?>
+            <input type="submit" value="Register">
+        <?php }else{?>
+            <input type="submit" value="Login">
+        <?php } ?>
         <?php if($is_register){ ?>
         <?php if (isset($login_err)) { ?>
             <p class="error"><?php echo $login_err; ?></p>
