@@ -46,6 +46,7 @@ nav ul li a {
 }
 
 .profile-image-container {
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -73,6 +74,50 @@ nav ul li a {
     border-radius: 1%;
     margin-bottom: 2%; /* Relative margin */
 }
+
+.user-review {
+    margin-top: 20px;
+}
+
+.user-review h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.user-review .form-group {
+    margin-bottom: 20px;
+}
+
+.user-review label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-review .input,
+.user-review .styled-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.user-review .button {
+    background-color: #04aa6d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-review .button:hover {
+    background-color: #21825f;
+}
+
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {

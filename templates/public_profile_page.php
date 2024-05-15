@@ -16,7 +16,7 @@ function drawProfileSection($row)
 {
     session_start();
     // Check if the logged-in user is an admin
-    $is_admin = ((isset($_SESSION['permissions']) && $_SESSION['permissions'] === 'admin') && ($row['permissions']!='admin'));
+    $is_admin = ((isset($_SESSION['permissions']) && $_SESSION['permissions'] === 'admin') && ($row['permissions'] != 'admin'));
     ?>
 
     <section class="profile">
@@ -29,13 +29,13 @@ function drawProfileSection($row)
                 <label>Email:</label>
                 <p><?php echo htmlspecialchars($row['email']); ?></p>
             </div>
-            <?php if (!empty(trim($row['small_description']))) : ?>
+            <?php if (!empty(trim($row['small_description']))): ?>
                 <div class="profile-info">
                     <label>Small Description:</label>
                     <p><?php echo htmlspecialchars($row['small_description']); ?></p>
                 </div>
             <?php endif; ?>
-            
+
             <!-- Display the promote to admin button if the logged-in user is admin -->
             <?php if ($is_admin): ?>
                 <form action="../../actions/promote_to_admin.php" method="post">
@@ -49,10 +49,30 @@ function drawProfileSection($row)
             <?php endif; ?>
         </div>
     </section>
-<?php
+    <?php
 }
 
-
+function drawTopReviewsSection($reviews,$db)
+{
+    ?>
+    <section class="top-reviews">
+        <h2>Last 5 Reviews</h2>
+        <?php if (empty($reviews)) { ?>
+            <p>No reviews yet.</p>
+        <?php } else { ?>
+            <ul>
+                <?php foreach ($reviews as $review): ?>
+                    <li>
+                        <p><strong>User:</strong> <?php echo htmlspecialchars((getUserByUserId($db, $review['SENDER_ID']))['username']); ?></p>
+                        <p><strong>Review:</strong> <?php echo htmlspecialchars($review['REVIEW']); ?></p>
+                        <p><strong>Rating:</strong> <?php echo $review['RATING']; ?> Stars</p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php } ?>
+    </section>
+    <?php
+}
 
 function drawProductsSection($products, $db)
 {
@@ -84,30 +104,67 @@ function drawProductsSection($products, $db)
 }
 
 
+function drawReviewSection($id)
+{
+    ?>
+    <section class="user-review">
+        <h2>Write a Review</h2>
+        <form action="../../actions/submit_review.php" method="post">
+            <section class="form-group">
+                <label for="review">Your Review:</label>
+                <textarea id="review" name="review" rows="4" class="input"></textarea>
+            </section>
+            <section class="form-group" style="width:80px;">
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" class="styled-select">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </section>
+            
+            <input type="hidden" name="receiver_id" value="<?php echo htmlspecialchars($id); ?>">
+            <section class="form-group">
+                <input type="submit" value="Submit Review" class="button">
+            </section>
+        </form>
+    </section>
+    <?php
+}
+
+
+
 
 function drawUserProfile($username, $row, $products, $db)
 {
     ?>
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Profile</title>
-        <link rel="stylesheet" href="../../../css/dashboard.css"> 
-        <link rel="stylesheet" href="../../../css/container.css"> 
+        <link rel="stylesheet" href="../../../css/dashboard.css">
+        <link rel="stylesheet" href="../../../css/container.css">
         <style>
             /* Add your additional CSS styles here */
         </style>
     </head>
+
     <body>
         <?php drawHeader($username); ?>
         <main>
-            <?php drawProfileSection($row); ?>
-            <?php drawProductsSection($products, $db); ?>
+            <?php drawProfileSection($row);
+            drawReviewSection($row['id']);
+            drawTopReviewsSection(fetchDataAll($db, "SELECT * FROM reviews WHERE receiver_id = :receiver_id ORDER BY id DESC LIMIT 5", [':receiver_id' => $row['id']]),$db);
+            drawProductsSection($products, $db); ?>
         </main>
         <?php draw_footer(); ?>
     </body>
+
     </html>
     <?php
 }

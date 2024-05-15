@@ -15,4 +15,5 @@ function createUser($db, $username, $email, $password)
     // Execute the query
     $insert_query->execute();
 }
+// create a general function to insert
 ?>

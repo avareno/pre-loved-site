@@ -5,6 +5,7 @@ require_once '../../common/dashboard_footer.php';
 require_once '../../templates/public_profile_page.php';
 require_once '../../utils/getters.php';
 
+
 $db = getDatabaseConnection();
 
 // Get the user ID from URL parameters
@@ -16,9 +17,6 @@ if (isset($_GET['id'])) {
 }
 
 $row = getUserByUserId($db, $user_id);
-
-// Proceed with displaying the user's profile
-
 
 // Check if the user has admin or seller role
 $is_admin = $row['permissions'] === 'admin';
