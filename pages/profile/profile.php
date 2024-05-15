@@ -6,6 +6,8 @@ require_once '../../common/dashboard_header.php';
 require_once '../../common/dashboard_footer.php';
 require_once '../../templates/profile_page.php';
 require_once '../../utils/getters.php';
+require_once '../../actions/update_field.php';
+
 
 $db = getDatabaseConnection();
 checkSessionAndRedirect("../main_page/index.php");
@@ -20,6 +22,12 @@ $is_seller = $row['permissions'] === 'seller';
 
 $products = getProductsBySellerId($db, $row['id']);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isPostParamSet("remove")) {
+        echo $product_id = $_POST['product_id'];
+        //updateFieldProducts($db,$product_id)
+    }
+}
 draw_header($username,$is_admin, $is_seller,"profile");
 draw_profile_main($row, $username, $products,$db);
 draw_footer()

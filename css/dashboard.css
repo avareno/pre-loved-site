@@ -65,21 +65,47 @@ main {
     overflow: hidden; /* Hide any overflow */
 }
 
-
 .product-card {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 1%;
     padding: 2%; /* Relative padding */
-    margin: 1%; /* Relative margin */
-    width: calc(33.33% - 2%); /* Flexible width */
+    margin: 1%;
+    width: calc(33.33% - 2%);
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 1%;
     margin-bottom: 2%; /* Relative margin */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 2%); /* Two cards per row */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .product-card {
+        width: calc(100% - 2%); /* Single card per row */
+    }
+}
+
+#remove-button {
+    background-color: #ff4d4d; /* Red background color */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+#remove-button:hover {
+    background-color: #cc0000; /* Darker red background color on hover */
 }
 
 
@@ -174,3 +200,5 @@ footer {
         width: calc(100% - 2%); /* Single card per row */
     }
 }
+
+

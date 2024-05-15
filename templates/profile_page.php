@@ -41,6 +41,13 @@ function draw_profile_main($row, $username, $products, $db){
                         <p><strong>Price:</strong> $<?php echo $product['price']; ?></p>
                         <p><strong>Condition:</strong> <?php echo $product['condition']; ?></p>
                         <p><strong>Category:</strong> <?php echo $product['category']; ?></p>
+                        <form method="post">
+                            <input type="hidden" name="remove">
+                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <button type="submit" class="remove-button">Remove</button>
+                        </form>
+
+
                     </section>
                 <?php endforeach; ?>
             </section>

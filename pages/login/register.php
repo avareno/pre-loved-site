@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
 
-require_once '../../database/read_tables.php';
+require '../../database/read_tables.php';
 require_once '../../utils/getters.php';
 require_once '../../actions/add_user.php';
 require_once '../../common/login_register.php';
