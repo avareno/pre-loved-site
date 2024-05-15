@@ -1,5 +1,4 @@
 <?php
-// Include the database connection and any necessary functions
 require_once ("delete_field.php");
 require_once ("../utils/getters.php");
 require_once '../database/read_tables.php';
