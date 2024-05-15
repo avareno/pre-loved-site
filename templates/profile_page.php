@@ -44,7 +44,7 @@ function draw_profile_main($row, $username, $products, $db){
                         <form method="post">
                             <input type="hidden" name="remove">
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                            <button type="submit" class="remove-button">Remove</button>
+                            <button type="submit" id="remove-button">Remove</button>
                         </form>
 
 
