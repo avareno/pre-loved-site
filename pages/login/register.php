@@ -47,26 +47,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($errors)) {
             $login_err = $errors[0];
         } else {
-            $existingUser = fetchData($db, "SELECT * FROM USERS WHERE username = :username OR email = :email", [":username" => $username, ":email" => $email]);
-
-            if ($existingUser) {
-                $login_err = 'Username or email already exists';
+            $banned = fetchData($db, "SELECT * FROM BAN WHERE email = :email", [":email" => $email]);
+            if ($banned) {
+                $login_err = "Sorry but that email is banned from this site, please use other email";
             } else {
-                $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+                $existingUser = fetchData($db, "SELECT * FROM USERS WHERE username = :username OR email = :email", [":username" => $username, ":email" => $email]);
 
-                createUser($db, $username, $email, $hashed_pass);
+                if ($existingUser) {
+                    $login_err = 'Username or email already exists';
+                } else {
+                    $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
 
-                $row = getUserByUsername($db, $username);
+                    createUser($db, $username, $email, $hashed_pass);
 
-                $_SESSION['username'] = $username;
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['permissions'] = $row['permissions'];
-                header("location: ../main_page/index.php");
-                exit;
+                    $row = fetchData($db, "SELECT * FROM users WHERE email = :email", [":email" => $email]);
+
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['permissions'] = $row['permissions'];
+                    header("location: ../main_page/index.php");
+                    exit;
+                }
             }
         }
     }
 }
 
-fetch_head(["username","email","password","password-conf"],["text","email","password","password"],["username","email","password","password-conf"],["username","email","password","password-conf"],["Username","Email","Password","Password Confirmation"],true,$login_err);
+fetch_head(["username", "email", "password", "password-conf"], ["text", "email", "password", "password"], ["username", "email", "password", "password-conf"], ["username", "email", "password", "password-conf"], ["Username", "Email", "Password", "Password Confirmation"], true, $login_err);
 ?>
