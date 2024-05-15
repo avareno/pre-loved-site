@@ -47,7 +47,7 @@ function drawNavbar()
     <nav id="navbar">
         <ul class="sidebar">
             <?php drawSidebarItems(); ?>
-            <?php drawLoginForm(); ?>
+            <?php drawSearch(); ?>
         </ul>
         <ul>
             <?php drawLogoAndMenuItems(); ?>
@@ -78,7 +78,7 @@ function drawSidebarItems()
     }
 }
 
-function drawLoginForm()
+function drawSearch()
 {
     ?>
     <form method="post" action="../products_page/products.php">
@@ -91,9 +91,10 @@ function drawLoginForm()
                     </path>
                 </g>
             </svg>
-            <input placeholder="Search" type="search" class="input">
+            <input placeholder="Search" type="search" class="input" name="key">
         </section>
     </form>
+
     <?php
 }
 
@@ -115,9 +116,10 @@ function drawLogoAndMenuItems()
                         </path>
                     </g>
                 </svg>
-                <input placeholder="Search" type="search" class="input">
+                <input placeholder="Search" type="text" class="input" name="key">
             </section>
         </form>
+
     </li>
     <li class="right hideOnMobile">
         <a href="../cart/cart.php">Cart</a>
