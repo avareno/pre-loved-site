@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hiddenInput.value = checkbox.checked ? 'become_seller' : '';
         // Trigger form submission when checkbox state changes
         checkbox.form.submit();
+        location.reload();
     });
 });
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hiddenInput.value = checkbox.checked ? 'become_user' : '';
         // Trigger form submission when checkbox state changes
         checkbox.form.submit();
+        location.reload();
     });
 });
 

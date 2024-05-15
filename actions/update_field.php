@@ -12,7 +12,7 @@ function updateFieldUsers($db, $username, $field, $value)
 function updateFieldProducts($db, $product_id, $field, $value)
 {
 
-    $query = "UPDATE Products SET $field = :value WHERE product_id = :product_id";
+    $query = "UPDATE Products SET $field = :value WHERE id = :product_id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':value', $value);
     $stmt->bindParam(':product_id', $product_id);
