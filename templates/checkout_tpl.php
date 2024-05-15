@@ -20,8 +20,6 @@ function drawcheckoutPage($db, $products){
 <?php
 function drawPaymentMethods(){
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
         <section class="payment-method">
             <h3>Selecione o Método de Pagamento</h3>
@@ -63,8 +61,6 @@ function drawPaymentMethods(){
 <?php
 function drawDeliveryAddress(){
 ?>
-<!DOCTYPE html>
-<html lang="en">
         <h2>Checkout</h2>
 
         <section class="checkout-address">
@@ -88,9 +84,7 @@ function drawDeliveryAddress(){
 <?php
 function drawCheckoutDetails($db, $products){
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    
+  
     <?php foreach ($products as $product) : ?>
         <section class="checkout-item">
             <section class="checkout-item-details">
