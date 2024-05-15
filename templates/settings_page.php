@@ -38,7 +38,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                                 <img id="profile-image" src="<?php echo $row['image']; ?>" alt="Profile Image">
                             </section>
                             <section>
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post" action="../../actions/add_info_user.php">
                                     <input type="file" name="profile-image" id="profile-image-input" accept="image/*"
                                         style="display: none;" onchange="this.form.submit()">
                                     <button class="submit-button" type="button"
@@ -49,7 +49,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                         </section>
                         <section class="column">
                             <h4>Small Description:</h4>
-                            <form method="post">
+                            <form method="post" action="../../actions/add_info_user.php">
                                 <textarea name="small_description" id="small_description" rows="10" cols="30"
                                     maxlength="255"><?php echo $row['small_description']; ?></textarea>
                                 <button class="submit-button" type="submit">Change Description</button>
@@ -58,7 +58,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                         <section class="column">
                             <h4>Country:</h4>
                             <section>
-                                <form method="post">
+                                <form method="post" action="../../actions/add_info_user.php">
                                     <input type="text" name="country" id="country" value="<?php echo $row['country']; ?>">
                                     <button class="submit-button" type="submit">Change Country</button>
                                 </form>
@@ -66,7 +66,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                         </section>
                         <section class="column">
                             <h4>City:</h4>
-                            <form method="post">
+                            <form method="post" action="../../actions/add_info_user.php">
                                 <input type="text" name="city" id="city" value="<?php echo $row['city']; ?>">
                                 <button class="submit-button" type="submit">Change City</button>
                             </form>
@@ -80,7 +80,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                         <section class="column">
                             <h4>Email:</h4>
                             <section>
-                                <form method="post">
+                                <form method="post" action="../../actions/add_info_user.php">
                                     <input type="text" name="email" id="email" value="<?php echo $row['email']; ?>">
                                     <button class="submit-button" type="submit">Change Email</button>
                                 </form>
@@ -88,7 +88,7 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                         </section>
                         <section class="column">
                             <h4>Phone Number:</h4>
-                            <form method="post">
+                            <form method="post" action="../../actions/add_info_user.php">
                                 <input type="text" name="phone_number" id="phone_number"
                                     value="<?php echo $row['phone_number']; ?>">
                                 <button class="submit-button" type="submit">Change Phone Number</button>

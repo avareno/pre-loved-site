@@ -59,18 +59,19 @@ function drawNavbar()
 function drawSidebarItems()
 {
     ?>
+    <li><a  href="../main_page/index.php">Home</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="../cart/cart.php">Cart</a></li>
     <li onclick="hideSideBar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                 width="24px" fill="black">
                 <path
                     d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg></a></li>
-    <li><a  href="../main_page/index.php">Home</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="../cart/cart.php">Cart</a></li>
+    
     <?php
-    session_start(); // Start the session to check user login status
+    session_start(); 
 
-    // Check if user is already logged in
+    
     if (isset($_SESSION['username'])) {
         echo '<li><a href="../profile/profile.php">Profile</a></li>';
     } else {

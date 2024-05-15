@@ -17,6 +17,15 @@
         return $row; // Returns the user data as an associative array
     }
 
+    function getUserByUserId($db, $id) {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row; // Returns the user data as an associative array
+    }
+
     function getProductsBySellerId($db, $sellerId) {
         $product_query = "SELECT * FROM products WHERE seller_id = :seller_id";
         $product_stmt = $db->prepare($product_query);

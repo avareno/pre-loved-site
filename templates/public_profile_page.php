@@ -1,0 +1,99 @@
+<?php
+
+
+
+function drawHeader($username)
+{
+    ?>
+    <header>
+        <h1>User Profile</h1>
+        <p>Welcome to the profile of <?php echo htmlspecialchars($username); ?>!</p>
+    </header>
+    <?php
+}
+
+function drawProfileSection($row)
+{
+    ?>
+    <section class="profile">
+        <div class="profile-image-container">
+            <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Profile Picture">
+        </div>
+        <div class="profile-details">
+            <h2><?php echo htmlspecialchars($row['username']); ?></h2>
+            <div class="profile-info">
+                <label>Email:</label>
+                <p><?php echo htmlspecialchars($row['email']); ?></p>
+            </div>
+            <?php if (!empty(trim($row['small_description']))) : ?>
+                <div class="profile-info">
+                    <label>Small Description:</label>
+                    <p><?php echo htmlspecialchars($row['small_description']); ?></p>
+                </div>
+            <?php endif; ?>
+            <!-- Add more profile information here as needed -->
+        </div>
+    </section>
+    <?php
+}
+
+
+
+function drawProductsSection($products, $db)
+{
+    ?>
+    <section>
+        <h2>Products on Sale</h2>
+        <section class="products-container">
+            <?php if (empty($products)) { ?>
+                <section class="column" style="width:100%;">
+                    <h3>No products yet</h3>
+                </section>
+            <?php } ?>
+            <?php foreach ($products as $product):
+                $product_id = $product['id'];
+                $productImage = fetchData($db, 'SELECT carousel_img FROM images WHERE product_id = :product_id LIMIT 1', [':product_id' => $product_id]);
+                ?>
+                <section class="product-card">
+                    <img src="<?php echo $productImage['carousel_img']; ?>" alt="Product Image">
+                    <h3><?php echo $product['title']; ?></h3>
+                    <p><strong>Description:</strong> <?php echo $product['description']; ?></p>
+                    <p><strong>Price:</strong> $<?php echo $product['price']; ?></p>
+                    <p><strong>Condition:</strong> <?php echo $product['condition']; ?></p>
+                    <p><strong>Category:</strong> <?php echo $product['category']; ?></p>
+                </section>
+            <?php endforeach; ?>
+        </section>
+    </section>
+    <?php
+}
+
+
+
+function drawUserProfile($username, $row, $products, $db)
+{
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Profile</title>
+        <link rel="stylesheet" href="../../../css/dashboard.css"> 
+        <link rel="stylesheet" href="../../../css/container.css"> 
+        <style>
+            /* Add your additional CSS styles here */
+        </style>
+    </head>
+    <body>
+        <?php drawHeader($username); ?>
+        <main>
+            <?php drawProfileSection($row); ?>
+            <?php drawProductsSection($products, $db); ?>
+        </main>
+        <?php draw_footer(); ?>
+    </body>
+    </html>
+    <?php
+}
+?>
