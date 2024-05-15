@@ -6,9 +6,12 @@ function drawcheckoutPage($db, $products){
 <body>
 
     <section class="checkout-container">
-        <?php drawDeliveryAddress() ?>
-        <?php drawPaymentMethods() ?>
-        <?php drawCheckoutDetails($db, $products) ?>
+        <form action="../../actions/checkout.php" method="post">
+            <?php drawDeliveryAddress() ?>
+            <?php drawPaymentMethods() ?>
+            <?php drawCheckoutDetails($db, $products) ?>
+            <button type="submit">Concluir Compra</button>
+        </form>
     </section>
 
 </body>
@@ -66,13 +69,13 @@ function drawDeliveryAddress(){
         <section class="checkout-address">
             <h3>Endereço de Entrega</h3>
             <label for="address">Endereço:</label>
-            <input type="text" id="address" name="address" placeholder="Endereço de Entrega">
+            <input type="text" id="address" name="address" placeholder="Endereço de Entrega" required>
 
             <label for="city">Cidade:</label>
-            <input type="text" id="city" name="city" placeholder="Cidade">
+            <input type="text" id="city" name="city" placeholder="Cidade" required>
 
             <label for="zip">Código Postal:</label>
-            <input type="text" id="zip" name="zip" placeholder="Código Postal">
+            <input type="text" id="zip" name="zip" placeholder="Código Postal" required>
         </section>
     
 
@@ -103,9 +106,7 @@ function drawCheckoutDetails($db, $products){
         <h3>Total: $100</h3> 
     </section>
 
-    <section class="checkout-actions">
-        <button class="checkout-btn">Concluir Compra</button>
-    </section>
+
 <?php    
 }
 ?>

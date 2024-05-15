@@ -51,7 +51,7 @@
     }
 
     function getCartbyUser($db, $id){
-        $query = $db->prepare('SELECT products.id, products.title, products.description, images.carousel_img FROM shopping_cart JOIN products ON shopping_cart.product_id = products.id JOIN images ON products.title = images.title WHERE shopping_cart.user_id = :user_id');
+        $query = $db->prepare('SELECT products.id, products.title, products.description, products.price, products.seller_id, images.carousel_img FROM shopping_cart JOIN products ON shopping_cart.product_id = products.id JOIN images ON products.title = images.title WHERE shopping_cart.user_id = :user_id');
         $query->bindValue(':user_id', $id, PDO::PARAM_STR);
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
