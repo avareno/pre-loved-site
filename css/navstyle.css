@@ -2,6 +2,7 @@
   list-style-type: none;
   margin: 0;
   padding: 7px;
+  padding-right: 70px;
   overflow: hidden;
   background-color: #e8e8e8;
   border-radius: 5px;
@@ -177,7 +178,7 @@ img {
   line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 190px;
+  max-width: 130px;
 }
 
 .sidebar{
@@ -206,6 +207,11 @@ img {
   text-decoration: underline, bold;
 }
 
+.sidebar select option{
+  width:100%;
+  height:auto;
+}
+
 .sidebar a{
   width: 100%;
   border-radius: 5px;
@@ -215,15 +221,61 @@ img {
   display: none;
 }
 
+/* Style for the select element */
+.styled-select {
+  /* Ensure the select box is visible and accessible */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Add custom styles */
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #04aa6d; /* Change border color as needed */
+  border-radius: 5px;
+  background-color: #e8e8e8; /* Change background color as needed */
+  color: black; /* Change text color as needed */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+/* Hover effect */
+.styled-select:hover {
+  border-color: #666; /* Change border color on hover as needed */
+}
+
+/* Focus effect */
+.styled-select:focus {
+  outline: none;
+  border-color: #04aa6d; /* Change border color on focus as needed */
+}
 
 
 @media screen and (max-width: 880px){
+  .group {
+    display: grid;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 250px;
+  }
+
   .hideOnMobile{
     display: none;
   }
 
   .menu{
     display: grid;
+  }
+
+  #navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 7px;
+    padding-right: 7px;
+    overflow: hidden;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    /* border: 1px solid red */
   }
 }
 
