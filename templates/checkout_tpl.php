@@ -86,8 +86,8 @@ function drawDeliveryAddress(){
 
 <?php
 function drawCheckoutDetails($db, $products){
+    $total = 0;
 ?>
-  
     <?php foreach ($products as $product) : ?>
         <section class="checkout-item">
             <section class="checkout-item-details">
@@ -99,11 +99,12 @@ function drawCheckoutDetails($db, $products){
                 </section>
             </section>
         </section>
+        <?php $total += $product['price']?>
     <?php endforeach; ?>
 
 
     <section class="checkout-total">
-        <h3>Total: $100</h3> 
+        <h3>Total: $<?php echo number_format($total, 2); ?></h3> 
     </section>
 
 
