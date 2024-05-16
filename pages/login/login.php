@@ -8,34 +8,41 @@ require_once '../../common/login_register.php';
 $db = getDatabaseConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isPostParamSet('username')) {
-        $username = $_POST['username'];
+    if (isPostParamSet('email')) {
+        $email = $_POST['email'];
     }
     if (isPostParamSet('password')) {
         $password = $_POST['password'];
     }
 
     // Check if any field is empty
-    if (empty($username) || empty($password)) {
-        //echo 'Fill all the fields to register';
+    if (empty($email) || empty($password)) {
+        $login_err = 'Fill all the fields to register';
     } else {
-
-        $user = fetchData($db, "SELECT * FROM users WHERE username = :username", [":username"=> $username]);
-
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-
-                $_SESSION['username'] = $username;
-                header("location: ../main_page/index.php");
-                exit;
-            } else {
-                $login_err = 'Invalid password';
-            }
+        $banned = fetchData($db, "SELECT * FROM BAN WHERE email = :email", [":email" => $email]);
+        if ($banned) {
+            $login_err = "Sorry but that email is banned from this site, please use other email";
         } else {
-            $login_err = 'Username not found';
+            $user = fetchData($db, "SELECT * FROM users WHERE email = :email", [":email" => $email]);
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+
+                    $row = fetchData($db, "SELECT * FROM users WHERE email = :email", [":email" => $email]);
+
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['permissions'] = $row['permissions'];
+                    header("location: ../main_page/index.php");
+                    exit;
+                } else {
+                    $login_err = 'Invalid password';
+                }
+            } else {
+                $login_err = 'Username not found';
+            }
         }
     }
 }
 
-fetch_head(["username","password"],["text","password"],["username","password"],["username","password"],["Username","Password"],false,$login_err);
+fetch_head(["email", "password"], ["text", "password"], ["email", "password"], ["email", "password"], ["Email", "Password"], false, $login_err);
 ?>

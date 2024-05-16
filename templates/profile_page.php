@@ -3,27 +3,31 @@ function draw_profile_main($row, $username, $products, $db)
 {
     ?>
     <main>
-        <section class="center">
+        <section class="column" style="width:100%;">
             <section class="profile-image-container">
                 <img id="profile-image" src="<?php echo $row['image']; ?>" alt="Profile Image">
             </section>
-            <section>
-                <p>Username: <?php echo $username; ?></p>
-                <p>Email: <?php echo $row['email']; ?></p>
+            <section class="row" style="width:20rem;">
+                <section class="column"style="width:100%;">
+                    <p>Username: <?php echo $username; ?></p>
+                    <p>Email: <?php echo $row['email']; ?></p>
+                </section>
                 <?php if (!empty(trim($row['small_description'])) || !empty(trim($row['country'])) || !empty(trim($row['city'])) || !empty(trim($row['phone_number']))): ?>
-                    <h3>Additional Information:</h3>
-                    <?php if (!empty(trim($row['small_description']))): ?>
-                        <p>Small Description: <?php echo $row['small_description']; ?></p>
-                    <?php endif; ?>
-                    <?php if (!empty(trim($row['country']))): ?>
-                        <p>Country: <?php echo $row['country']; ?></p>
-                    <?php endif; ?>
-                    <?php if (!empty(trim($row['city']))): ?>
-                        <p>City: <?php echo $row['city']; ?></p>
-                    <?php endif; ?>
-                    <?php if (!empty(trim($row['phone_number']))): ?>
-                        <p>Phone Number: <?php echo $row['phone_number']; ?></p>
-                    <?php endif; ?>
+                    <section class="column">
+                        <h3>Additional Information:</h3>
+                        <?php if (!empty(trim($row['small_description']))): ?>
+                            <p>Small Description: <?php echo $row['small_description']; ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty(trim($row['country']))): ?>
+                            <p>Country: <?php echo $row['country']; ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty(trim($row['city']))): ?>
+                            <p>City: <?php echo $row['city']; ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty(trim($row['phone_number']))): ?>
+                            <p>Phone Number: <?php echo $row['phone_number']; ?></p>
+                        <?php endif; ?>
+                    </section>
                 <?php endif; ?>
             </section>
         </section>
@@ -31,7 +35,7 @@ function draw_profile_main($row, $username, $products, $db)
             <h2>Products on Sale</h2>
             <section class="products-container">
                 <?php if (empty($products)) { ?>
-                    <section class="center">
+                    <section class="column" style="width:100%;">
                         <h3>No products yet</h3>
 
                     </section>

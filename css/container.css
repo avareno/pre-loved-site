@@ -41,14 +41,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     width: 50%;
     padding: 0 2rem 0 0;
+    /* border:solid blue 1px; */
 
-  }
+}
   
-  .row {
+.row {
+    border:solid red 1px;
     display: flex;
     flex-direction: row;
     justify-content: left;
     width:90%;
-  }
+    
+}

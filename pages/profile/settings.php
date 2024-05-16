@@ -28,26 +28,6 @@ $is_seller = $row['permissions'] === 'seller';
 $products = getProductsBySellerId($db, $row['id']);
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_FILES['profile-image'])) {
-        uploadImage($db, $username, $imageFile);
-    } elseif (isPostParamSet("country")) {
-        updateFieldUsers($db, $username, 'country', $_POST["country"]);
-    } elseif (isPostParamSet("city")) {
-        // Handle city update
-        updateFieldUsers($db, $username, 'city', $_POST["city"]);
-    } elseif (isPostParamSet("small_description")) {
-        // Handle small description update
-        updateFieldUsers($db, $username, 'small_description', $_POST["small_description"]);
-    } elseif (isPostParamSet("email")) {
-        // Handle email update
-        updateFieldUsers($db, $username, 'email', $_POST["email"]);
-    } elseif (isPostParamSet("phone_number")) {
-        // Handle phone number update
-        updateFieldUsers($db, $username, 'phone_number', $_POST["phone_number"]);
-    }
-
-}
 
 draw_header($username, $is_admin, $is_seller, "settings");
 draw_settings_page($username, $is_admin, $is_seller, $row);
