@@ -34,9 +34,7 @@ function draw_navigation_menu($is_admin, $is_seller, $currentPage) {
     <nav>
         <ul>
             <li><a href="../main_page/index.php">Home</a></li>
-            <?php if ($is_admin || $is_seller): ?>
-                <li><a href="../sell_items/sell_page.php">Sell</a></li>
-            <?php endif; ?>
+            <li><a href="../sell_items/sell_page.php">Sell</a></li>
             <li><a href="<?php echo ($currentPage == 'profile') ? 'settings.php' : 'profile.php'; ?>"><?php echo ($currentPage == 'profile') ? 'Settings' : 'Profile'; ?></a></li>
             <li><a href="../../actions/logout.php">Logout</a></li>
         </ul>
