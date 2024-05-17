@@ -7,9 +7,17 @@ $db = getDatabaseConnection();
 
 // Handle search
 if (isPostParamSet('find')) {
-    $key = '%' . $_POST['key'] . '%';
-    $query = 'SELECT id, title, carousel_img FROM images WHERE title LIKE :keyword ORDER BY title';
-    $results = fetchDataAll($db, $query, [':keyword' => $key]);
+    $search_type = $_POST['search_type'];
+
+    if ($search_type == 'products') {
+        $query = 'SELECT id, title, carousel_img FROM images WHERE title LIKE :keyword ORDER BY title';
+        $key = '%' . $_POST['key'] . '%';
+        $results = fetchDataAll($db, $query, [':keyword' => $key]);
+    } elseif ($search_type == 'users') {
+        header("Location: ../users/user_search.php?key=" . urlencode($_POST['key']));
+        exit();
+    }
+
 }
 
 if (isGetParamSet('category')) {
@@ -20,5 +28,5 @@ if (isGetParamSet('category')) {
 
 
 drawHeader();
-drawGridSection($results,$products);
+drawGridSection($results, $products);
 ?>

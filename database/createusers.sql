@@ -10,10 +10,12 @@ CREATE TABLE users (
     city VARCHAR(50) ,
     phone_number VARCHAR(13) UNIQUE,
     image VARCHAR DEFAULT '../../../assets/Default_pfp.svg.png'
+    -- CONSTRAINT PK_USER PRIMARY KEY (id,username,email)
+
 );
 
 
 INSERT INTO users (username, email, password, permissions) VALUES 
-    ('admin','admin@m.m','$2y$10$SlJh9XD5Cm8UXvS0Q8xwUeNFAY4wvVN/wlU4crXOLgNIoJAhGNGSG','admin')/*admin, admin123
+    ('admin','admin@m.m','$2y$10$SlJh9XD5Cm8UXvS0Q8xwUeNFAY4wvVN/wlU4crXOLgNIoJAhGNGSG','admin')/*admin, admin123*/
 
 ;
