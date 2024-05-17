@@ -2,6 +2,7 @@
   list-style-type: none;
   margin: 0;
   padding: 7px;
+  padding-bottom: 0px;
   padding-right: 70px;
   overflow: hidden;
   background-color: #e8e8e8;
@@ -168,17 +169,28 @@ img {
 .icon {
   position: absolute;
   left: 1rem;
+  top: 1rem;
   fill: #9e9ea7;
   width: 1rem;
   height: 1rem;
 }
 
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
 .group {
-  display: grid;
-  line-height: 28px;
+  display: flex;
   align-items: center;
   position: relative;
-  max-width: 130px;
+  max-width: 300px;
+  padding: 5px;
+}
+
+.group .styled-select {
+  margin-left: 10px;
+  height: 40px;
 }
 
 .sidebar{
@@ -277,6 +289,9 @@ img {
     border-radius: 5px;
     /* border: 1px solid red */
   }
+  .styled-select{
+    margin-top: 10px;
+  }
 }
 
 @media screen and (max-width: 380px){
@@ -284,8 +299,5 @@ img {
     display: none;
   }
 
-  .group{
-    display: none;
-  }
 }
 

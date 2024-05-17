@@ -71,30 +71,29 @@ function drawSidebarItems()
     } else {
         echo '<li><a href="../login/register.php">Login/Register</a></li>';
     } ?>
-    <li>
-        <select id="cars" class="styled-select">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-    </li>
     <?php drawSearch(); ?>
-    <li onclick="hideSideBar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                width="24px" fill="black">
-                <path
-                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-            </svg></a></li>
+    <li onclick="hideSideBar()">
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z">
+                </path>
+            </svg>
+        </a>
+    </li>
 
-    <?php 
+    <?php
 }
 
 function drawSearch()
 {
     ?>
-    <form method="post" action="../products_page/products.php">
-        <input type="submit" value="find" name="find">
+    <form method="post" action="../products_page/products.php" class="search-form">
         <section class="group">
+            <input placeholder="Search" type="text" class="input" name="key">
+            <select name="search_type" class="styled-select">
+                <option value="products">Products</option>
+                <option value="users">Users</option>
+            </select>
             <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
                 <g>
                     <path
@@ -102,12 +101,15 @@ function drawSearch()
                     </path>
                 </g>
             </svg>
-            <input placeholder="Search" type="text" class="input" name="key">
         </section>
+        <input type="submit" value="find" name="find">
     </form>
-
     <?php
 }
+
+
+
+
 
 function drawLogoAndMenuItems()
 {
@@ -118,13 +120,6 @@ function drawLogoAndMenuItems()
     <li class="hideOnMobile"><a href="#contact">Contact</a></li>
     <li class="right hideOnMobile">
         <?php drawSearch() ?>
-
-    </li>
-    <li class="right hideOnMobile">
-        <select id="search_type" class="styled-select">
-            <option value="products">Products</option>
-            <option value="users">Users</option>
-        </select>
     </li>
     <li class="right hideOnMobile">
         <a href="../cart/cart.php">Cart</a>

@@ -1,8 +1,8 @@
 <?php
 session_start(); // Start the session
 
-require '../../database/read_tables.php';
-require_once '../../utils/getters.php';
+require '../database/read_tables.php';
+require_once '../utils/getters.php';
 
 $db = getDatabaseConnection();
 
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!empty($errors)) {
             $_SESSION['error'] = $errors[0];
-            header("location: ../profile_page/index.php");
+            header("location: ../pages/profile/profile.php");
             exit;
         }
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (!$user || !password_verify($current_password, $user['password'])) {
             $_SESSION['error'] = 'Current password is incorrect';
-            header("location: ../profile_page/index.php");
+            header("location: ../pages/profile/profile.php");
             exit;
         }
 
@@ -56,16 +56,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Provide feedback to the user
             $_SESSION['message'] = 'Password updated successfully';
-            header("location: ../profile_page/index.php");
+            header("location: ../pages/profile/profile.php");
             exit;
         } catch (PDOException $e) {
             $_SESSION['error'] = 'Error updating password: ' . $e->getMessage();
-            header("location: ../profile_page/index.php");
+            header("location: ../pages/profile/profile.php");
             exit;
         }
     } else {
         $_SESSION['error'] = 'All fields are required';
-        header("location: ../profile_page/index.php");
+        header("location: ../pages/profile/profile.php");
         exit;
     }
 }
