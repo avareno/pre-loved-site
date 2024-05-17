@@ -1,7 +1,5 @@
 <?php
 
-
-
 function drawHeader($username)
 {
     ?>
@@ -12,47 +10,49 @@ function drawHeader($username)
     <?php
 }
 
-function drawProfileSection($row)
+function drawProfileSection($row, $averageRating)
 {
     session_start();
-    // Check if the logged-in user is an admin
     $is_admin = ((isset($_SESSION['permissions']) && $_SESSION['permissions'] === 'admin') && ($row['permissions'] != 'admin'));
     ?>
 
     <section class="profile">
-        <div class="profile-image-container">
+        <section class="profile-image-container">
             <img src="<?php echo htmlspecialchars($row['image']); ?>" alt="Profile Picture">
-        </div>
-        <div class="profile-details">
+        </section>
+        <section class="profile-details">
             <h2><?php echo htmlspecialchars($row['username']); ?></h2>
-            <div class="profile-info">
+            <section class="profile-info">
                 <label>Email:</label>
                 <p><?php echo htmlspecialchars($row['email']); ?></p>
-            </div>
+            </section>
             <?php if (!empty(trim($row['small_description']))): ?>
-                <div class="profile-info">
-                    <label>Small Description:</label>
+                <section class="profile-info">
+                    <label>About:</label>
                     <p><?php echo htmlspecialchars($row['small_description']); ?></p>
-                </div>
+                </section>
             <?php endif; ?>
 
-            <!-- Display the promote to admin button if the logged-in user is admin -->
             <?php if ($is_admin): ?>
-                <form action="../../actions/promote_to_admin.php" method="post">
+                <form action="../../actions/promote_to_admin.php" method="post" class="admin-actions">
                     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                    <input type="submit" value="Promote to Admin">
+                    <button type="submit" class="admin-button">Promote to Admin</button>
                 </form>
-                <form action="../../actions/ban.php" method="post">
+                <form action="../../actions/ban.php" method="post" class="admin-actions">
                     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                    <input type="submit" value="Ban User">
+                    <button type="submit" class="admin-button">Ban User</button>
                 </form>
             <?php endif; ?>
-        </div>
+        </section>
+    </section>
+    <section class="profile-info">
+        <label>Average Rating:</label>
+        <p><?php echo $averageRating !== null ? htmlspecialchars(number_format($averageRating, 2)) . ' &star;' : 'No ratings yet'; ?></p>
     </section>
     <?php
 }
 
-function drawTopReviewsSection($reviews,$db)
+function drawTopReviewsSection($reviews, $db)
 {
     ?>
     <section class="top-reviews">
@@ -65,7 +65,7 @@ function drawTopReviewsSection($reviews,$db)
                     <li>
                         <p><strong>User:</strong> <?php echo htmlspecialchars((getUserByUserId($db, $review['SENDER_ID']))['username']); ?></p>
                         <p><strong>Review:</strong> <?php echo htmlspecialchars($review['REVIEW']); ?></p>
-                        <p><strong>Rating:</strong> <?php echo $review['RATING']; ?> Stars</p>
+                        <p><strong>Rating:</strong> <?php echo $review['RATING']; ?> &star;</p>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -90,19 +90,18 @@ function drawProductsSection($products, $db)
                 $productImage = fetchData($db, 'SELECT carousel_img FROM images WHERE product_id = :product_id LIMIT 1', [':product_id' => $product_id]);
                 ?>
                 <section class="product-card">
-                    <img src="<?php echo $productImage['carousel_img']; ?>" alt="Product Image">
-                    <h3><?php echo $product['title']; ?></h3>
-                    <p><strong>Description:</strong> <?php echo $product['description']; ?></p>
-                    <p><strong>Price:</strong> $<?php echo $product['price']; ?></p>
-                    <p><strong>Condition:</strong> <?php echo $product['condition']; ?></p>
-                    <p><strong>Category:</strong> <?php echo $product['category']; ?></p>
+                    <img src="<?php echo htmlspecialchars($productImage['carousel_img']); ?>" alt="Product Image">
+                    <h3><?php echo htmlspecialchars($product['title']); ?></h3>
+                    <p><strong>Description:</strong> <?php echo htmlspecialchars($product['description']); ?></p>
+                    <p><strong>Price:</strong> $<?php echo htmlspecialchars($product['price']); ?></p>
+                    <p><strong>Condition:</strong> <?php echo htmlspecialchars($product['condition']); ?></p>
+                    <p><strong>Category:</strong> <?php echo htmlspecialchars($product['category']); ?></p>
                 </section>
             <?php endforeach; ?>
         </section>
     </section>
     <?php
 }
-
 
 function drawReviewSection($id)
 {
@@ -117,54 +116,48 @@ function drawReviewSection($id)
             <section class="form-group" style="width:80px;">
                 <label for="rating">Rating:</label>
                 <select id="rating" name="rating" class="styled-select">
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
+                    <option value="1">1 &star;</option>
+                    <option value="2">2 &star;</option>
+                    <option value="3">3 &star;</option>
+                    <option value="4">4 &star;</option>
+                    <option value="5">5 &star;</option>
                 </select>
             </section>
-            
+
             <input type="hidden" name="receiver_id" value="<?php echo htmlspecialchars($id); ?>">
             <section class="form-group">
-                <input type="submit" value="Submit Review" class="button">
+                <button type="submit" class="button">Submit Review</button>
             </section>
         </form>
     </section>
     <?php
 }
 
-
-
-
-function drawUserProfile($username, $row, $products, $db)
+function drawUserProfile($username, $row, $products, $db, $averageRating)
 {
     ?>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Profile</title>
         <link rel="stylesheet" href="../../../css/dashboard.css">
         <link rel="stylesheet" href="../../../css/container.css">
-        <style>
-            /* Add your additional CSS styles here */
-        </style>
+        
     </head>
-
     <body>
         <?php drawHeader($username); ?>
         <main>
-            <?php drawProfileSection($row);
+            <?php 
+            drawProfileSection($row, $averageRating);
             drawReviewSection($row['id']);
-            drawTopReviewsSection(fetchDataAll($db, "SELECT * FROM reviews WHERE receiver_id = :receiver_id ORDER BY id DESC LIMIT 5", [':receiver_id' => $row['id']]),$db);
-            drawProductsSection($products, $db); ?>
+            drawTopReviewsSection(fetchDataAll($db, "SELECT * FROM reviews WHERE receiver_id = :receiver_id ORDER BY id DESC LIMIT 5", [':receiver_id' => $row['id']]), $db);
+            drawProductsSection($products, $db); 
+            ?>
         </main>
         <?php draw_footer(); ?>
     </body>
-
     </html>
     <?php
 }
