@@ -21,9 +21,10 @@ $is_admin = $row['permissions'] === 'admin';
 $is_seller = $row['permissions'] === 'seller';
 
 $products = getProductsBySellerId($db, $row['id']);
+$sold_products = getSoldProductsBySellerId($db, $row['id']);
 
 draw_header($username,$is_admin, $is_seller,"profile");
-draw_profile_main($row, $username, $products,$db);
+draw_profile_main($row, $username, $products, $sold_products, $db);
 draw_footer()
 ?>
 

@@ -67,4 +67,19 @@
         return $products;
     }
 
+    function getSoldProductsBySellerId($db, $sellerId) {
+        $query = "
+            SELECT sp.*, p.title AS product_title, u.username AS buyer_username
+            FROM sold_products sp
+            JOIN products p ON sp.product_id = p.id
+            JOIN users u ON sp.user_id = u.id
+            WHERE sp.seller_id = :seller_id ";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":seller_id", $sellerId, PDO::PARAM_INT);
+        $stmt->execute();
+        $sold_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $sold_products;
+    }
+    
+
 ?>

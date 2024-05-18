@@ -1,5 +1,5 @@
 <?php
-function draw_profile_main($row, $username, $products, $db)
+function draw_profile_main($row, $username, $products, $sold_products, $db)
 {
     ?>
     <main>
@@ -62,6 +62,33 @@ function draw_profile_main($row, $username, $products, $db)
                         </form>
                     </section>
                 <?php endforeach; ?>
+            </section>
+        </section>
+
+
+        <section>
+            <h2>Sold Products</h2>
+            <section class="products-container">
+                <?php if (empty($sold_products)) { ?>
+                    <section class="column" style="width:100%;">
+                        <h3>No products yet</h3>
+                    </section>
+                <?php } else {
+                    foreach ($sold_products as $product) {
+                        $product_id = $product['product_id'];
+                        $product_details = fetchData($db, 'SELECT * FROM products WHERE id = :product_id', [':product_id' => $product_id]);
+                        $product_image = fetchData($db, 'SELECT carousel_img FROM images WHERE product_id = :product_id LIMIT 1', [':product_id' => $product_id]);
+                        ?>
+                        <section class="product-card">
+                            <img src="<?php echo htmlspecialchars($product_image['carousel_img']); ?>" alt="Product Image">
+                            <h3><?php echo htmlspecialchars($product_details['title']); ?></h3>
+                            <p><strong>Description:</strong> <?php echo htmlspecialchars($product_details['description']); ?></p>
+                            <p><strong>Price:</strong> $<?php echo htmlspecialchars($product_details['price']); ?></p>
+                            <p><strong>Condition:</strong> <?php echo htmlspecialchars($product_details['condition']); ?></p>
+                            <p><strong>Category:</strong> <?php echo htmlspecialchars($product_details['category']); ?></p>
+                        </section>
+                    <?php }
+                } ?>
             </section>
         </section>
 
