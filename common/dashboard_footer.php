@@ -3,7 +3,7 @@
 ?>
 
     <footer>
-            <p>© <?php echo date("Y"); ?> Your Company Name. All rights reserved.</p>
+            <p>© <?php echo date("Y"); ?> LMT. All rights reserved.</p>
     </footer>
 
 <?php

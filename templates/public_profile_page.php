@@ -6,6 +6,11 @@ function drawHeader($username)
     <header>
         <h1>User Profile</h1>
         <p>Welcome to the profile of <?php echo htmlspecialchars($username); ?>!</p>
+        <nav>
+        <ul>
+            <li><a href="../main_page/index.php">Home</a></li>
+        </ul>
+    </nav>
     </header>
     <?php
 }
