@@ -1,10 +1,12 @@
 <?php
+require_once '../utils/getters.php';
 function clearUserCart($db, $username, $products) {
     
     foreach ($products as $product) {
         $product_id = $product['id'];
         $seller_id = $product['seller_id'];
-        $user_id = getUserIdByUsername($db, $username);
+        $row = getUserByUsername($db, $username);
+        $user_id = $row['id'];
         $queryIncreaseQuantity = $db->prepare('UPDATE products SET quantity = 0 WHERE id = :product_id');
         $queryIncreaseQuantity->bindValue(':product_id', $product_id, PDO::PARAM_INT);
         $queryIncreaseQuantity->execute();
@@ -24,11 +26,4 @@ function clearUserCart($db, $username, $products) {
 
 }
 
-function getUserIdByUsername($db, $username) {
-    $query = $db->prepare('SELECT id FROM users WHERE username = :username');
-    $query->bindValue(':username', $username, PDO::PARAM_STR);
-    $query->execute();
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    return $result['id'];
-}
 ?>

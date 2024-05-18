@@ -7,7 +7,6 @@ require_once '../utils/getters.php';
 require_once 'clear_user_cart.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $paypalSubmitted = !empty($_POST['paypal-email']) && !empty($_POST['paypal-password']);
     $cardSubmitted = !empty($_POST['card-number']) && !empty($_POST['card-expiry']) && !empty($_POST['card-cvv']);
     $mbwaySubmitted = !empty($_POST['mbway-phone']);
@@ -20,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../pages/cart/cart.php");
         exit;
     } else {
-        echo "No payment method submitted!";
+        $_SESSION['error'] = "Invalid payment method!";
+        header("Location: ../pages/checkout/checkout.php");
         exit;
     }
 } else {

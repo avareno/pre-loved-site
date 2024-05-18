@@ -6,6 +6,12 @@ function drawcheckoutPage($db, $products){
 <body>
 
     <section class="checkout-container">
+    <?php
+            if (isset($_SESSION['error'])) {
+                echo '<p class="error-message">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']); // Clear the error message after displaying it
+            }
+            ?>
         <form action="../../actions/checkout.php" method="post">
             <?php drawDeliveryAddress() ?>
             <?php drawPaymentMethods() ?>
