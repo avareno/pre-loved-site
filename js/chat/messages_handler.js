@@ -55,8 +55,8 @@ function sendMessage(conversationId, message, recipientId) {
 }
 
 function setCurrentID(accountId, conversationId) {
-    document.getElementById("account-id").textContent = accountId;
-    document.getElementById("submit-date").textContent = conversationId;
+    document.getElementById("account-id").textContent = '';
+    document.getElementById("submit-date").textContent = '';
     fetchMessages(conversationId);
 }
 
