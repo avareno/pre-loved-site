@@ -80,6 +80,18 @@
         $sold_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $sold_products;
     }
+
+    function getSoldProductDetails($db, $sold_product_id) {
+        $query = $db->prepare('
+            SELECT sp.*, p.title, p.description, p.price, p.condition, p.category
+            FROM sold_products sp
+            JOIN products p ON sp.product_id = p.id
+            WHERE sp.id = :sold_product_id
+        ');
+        $query->bindValue(':sold_product_id', $sold_product_id, PDO::PARAM_INT);
+        $query->execute();
+        return $query->fetch();
+    }
     
 
 ?>

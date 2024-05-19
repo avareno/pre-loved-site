@@ -86,6 +86,9 @@ function draw_profile_main($row, $username, $products, $sold_products, $db)
                             <p><strong>Price:</strong> $<?php echo htmlspecialchars($product_details['price']); ?></p>
                             <p><strong>Condition:</strong> <?php echo htmlspecialchars($product_details['condition']); ?></p>
                             <p><strong>Category:</strong> <?php echo htmlspecialchars($product_details['category']); ?></p>
+                            <a href="../../pages/shipping_label/shipping_label.php?sold_product_id=<?php echo htmlspecialchars($product['id']); ?>" target="_blank">
+                                <button>Shipping Label</button>
+                            </a>
                         </section>
                     <?php }
                 } ?>
