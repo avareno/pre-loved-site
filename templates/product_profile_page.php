@@ -20,7 +20,12 @@ function drawProductProfile($product, $productImage, $product_id)
                     <p class="left">Category</p>
                     <p class="right"><?php echo $product['category']; ?></p>
                     <p class="left">Seller</p>
-                    <p class="right"><?php echo $product['seller_id']; ?></p>
+                    <p class="right">
+                        <a href="../profile/public_profile.php?id=<?php echo $product['seller_id']; ?>">
+                        <?php echo $product['seller_id']; ?>
+                        </a>
+                    </p>
+
                 </section>
             </section>
             <h1><?php echo $product['title']; ?></h1>
