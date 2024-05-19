@@ -16,7 +16,10 @@ if (isset($_GET['id'])) {
     exit("User ID parameter is missing.");
 }
 
+
 $row = getUserByUserId($db, $user_id);
+
+
 
 $averageRatingQuery = fetchData($db, 'SELECT AVG(rating) AS average_rating FROM reviews WHERE receiver_id = :receiver_id', [':receiver_id' => $row['id']]);
 $averageRating = $averageRatingQuery ? $averageRatingQuery['average_rating'] : null;
@@ -28,5 +31,6 @@ $username = $row['username'];
 $products = getProductsBySellerId($db, $row['id']);
 
 drawUserProfile($username, $row, $products, $db, $averageRating);
+
 
 ?>
