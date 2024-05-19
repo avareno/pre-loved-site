@@ -2,7 +2,7 @@
 session_start();
 require_once '../database/read_tables.php';
 
-function getOrCreateConversation($db, $account_id_1, $account_id_2) {
+function getOrCreateConversation($db, $account_id_1, $account_id_2,$default_id ) {
     try {
         // Check if a conversation already exists between the two users
         $stmt = $db->prepare("SELECT ID FROM CONVERSATIONS WHERE (ACCOUNT_ID_1 = :account_id_1 AND ACCOUNT_ID_2 = :account_id_2) OR (ACCOUNT_ID_1 = :account_id_2 AND ACCOUNT_ID_2 = :account_id_1)");
@@ -17,11 +17,24 @@ function getOrCreateConversation($db, $account_id_1, $account_id_2) {
             return $conversation['ID'];
         }
 
-        // If no conversation exists, create a new one
-        $stmt = $db->prepare("INSERT INTO CONVERSATIONS (ACCOUNT_ID_1, ACCOUNT_ID_2, submit_date) VALUES (:account_id_1, :account_id_2, :submit_date)");
+        // Check if a conversation already exists between the two users
+        $stmt = $db->prepare("SELECT ID FROM CONVERSATIONS WHERE (ACCOUNT_ID_1 = :account_id_1 AND ACCOUNT_ID_2 = :default_id) OR (ACCOUNT_ID_1 = :default_id AND ACCOUNT_ID_2 = :account_id_1)");
         $stmt->execute([
             ':account_id_1' => $account_id_1,
-            ':account_id_2' => $account_id_2,
+            ':default_id' => $default_id
+        ]);
+        $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // If a conversation exists, return its ID
+        if ($conversation) {
+            return $conversation['ID'];
+        }
+
+        // If no conversation exists, create a new one
+        $stmt = $db->prepare("INSERT INTO CONVERSATIONS (ACCOUNT_ID_1, ACCOUNT_ID_2, submit_date) VALUES (:account_id_1, :default_id, :submit_date)");
+        $stmt->execute([
+            ':account_id_1' => $account_id_1,
+            ':default_id' => $default_id,
             ':submit_date' => date('Y-m-d H:i:s')
         ]);
 
@@ -38,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $recipient_id = $_POST['recipient_id'];
         $message = $_POST['message'];
         $account_id = $_SESSION['id'];
+        $default_id = $_POST['default_id'];
         $submit_date = date('Y-m-d H:i:s');
 
         try {
@@ -50,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Get or create the conversation ID
-            $conversation_id = getOrCreateConversation($db, $account_id, $recipient_id);
+            $conversation_id = getOrCreateConversation($db, $account_id, $recipient_id,$default_id );
 
             if ($conversation_id) {
                 // Insert the message into the MESSAGES table

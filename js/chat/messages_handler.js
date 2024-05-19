@@ -54,7 +54,7 @@ function sendMessage(conversationId, message, recipientId) {
             }
         }
     };
-    xhr.send("conversation_id=" + encodeURIComponent(conversationId) + "&message=" + encodeURIComponent(message) + "&recipient_id=" + encodeURIComponent(recipientId));
+    xhr.send("conversation_id=" + encodeURIComponent(conversationId) + "&message=" + encodeURIComponent(message) + "&recipient_id=" + encodeURIComponent(recipientId) + "&default_id=" + encodeURIComponent(userId));
 }
 
 function setCurrentID(accountId, conversationId) {

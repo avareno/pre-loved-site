@@ -13,6 +13,7 @@ function drawHeader($username)
 function drawProfileSection($row, $averageRating)
 {
     session_start();
+    
     $is_admin = ((isset($_SESSION['permissions']) && $_SESSION['permissions'] === 'admin') && ($row['permissions'] != 'admin'));
     ?>
 
@@ -42,8 +43,8 @@ function drawProfileSection($row, $averageRating)
                     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['id']); ?>">
                     <button type="submit" class="admin-button">Ban User</button>
                 </form>
-            <?php endif; ?>
-            <button class="chat-button"  onclick="startChat('<?php echo htmlspecialchars($row['id'],$_SESSION['id']); ?>')">Start Chat  
+            <?php endif;  ?>
+            <button class="chat-button" onclick="startChat('<?php echo htmlspecialchars($row['id']); ?>')">Start Chat</button>
             
             </button>
         </section>
