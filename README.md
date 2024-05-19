@@ -9,7 +9,7 @@
 ## Screenshots
 
 
-![Main Page](assets/Screenshot from 2024-04-29 19-38-42.png)
+![Main Page](assets/6644fda3821af_goat.png)
 
 ## Implemented Features
 
