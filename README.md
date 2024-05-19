@@ -2,24 +2,14 @@
 
 ## Group ltw16g05
 
-- Luís Cordeiro (up202205425) -%
-- Miguel Cabral (up202204996) -%
-- Tomas Esteves (up202205045) -%
-
-## Install Instructions
-
-
-
-    git clone <your_repo_url>
-    git checkout final-delivery-v1
-    sqlite database/database.db < database/script.sql
-    php -S localhost:9000
-
-
+- Luís Cordeiro (up202205425) 39%
+- Miguel Cabral (up202204996) 43%
+- Tomas Esteves (up202205045) 18%
 
 ## Screenshots
 
-(2 or 3 screenshots of your website)
+
+![Main Page](assets/Screenshot from 2024-04-29 19-38-42.png)
 
 ## Implemented Features
 
