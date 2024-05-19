@@ -13,7 +13,6 @@ $id = $_SESSION['id'];
 $stmt = "SELECT * FROM CONVERSATIONs WHERE ACCOUNT_ID_1= :id or ACCOUNT_ID_2 = :id";
 $conversations = fetchDataAll($db, $stmt, [':id' => $id]);
 
-$current_id;
 ?>
 
 <!doctype html>
@@ -87,17 +86,17 @@ $current_id;
 
         #message-form {
             margin-top: 20px;
+            display: flex;
         }
 
         #message-input {
-            width: calc(100% - 80px);
+            flex: 1;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px 0 0 5px;
         }
 
         #message-form button {
-            width: 80px;
             padding: 10px;
             background-color: #007bff;
             border: none;
@@ -135,15 +134,18 @@ $current_id;
 
         <section id="chat" class="column" style="border: solid blue 1px;">
             <section id="conversation-details">
-                <p id="account-id"></p>
-                <p id="submit-date"></p>
+                <p id="account-id" style="display:none;"></p>
+                <p id="submit-date" style="display:none;"></p>
                 <div id="messages"></div>
                 <form id="message-form">
                     <input type="text" id="message-input" name="message" placeholder="Type a message" required>
+                    <input type="hidden" id="recipient-id" name="recipient-id">
                     <button type="submit">Send</button>
                 </form>
             </section>
         </section>
+
+
     </section>
 </body>
 
