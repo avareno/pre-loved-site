@@ -9,7 +9,10 @@
 ## Screenshots
 
 
-![Main Page](assets/6644fda3821af_goat.png)
+![Main Page](assets/print1.png)
+![Main Page](assets/print2.png)
+![Main Page](assets/print3.png)
+
 
 ## Implemented Features
 
