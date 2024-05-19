@@ -83,15 +83,21 @@
 
     function getSoldProductDetails($db, $sold_product_id) {
         $query = $db->prepare('
-            SELECT sp.*, p.title, p.description, p.price, p.condition, p.category
+            SELECT sp.*, 
+                   p.title, p.description, p.price, p.condition, p.category, 
+                   u_buyer.username AS buyer_username, u_buyer.email AS buyer_email, u_buyer.country AS buyer_country, u_buyer.city AS buyer_city, u_buyer.phone_number AS buyer_phone,
+                   u_seller.username AS seller_username, u_seller.email AS seller_email, u_seller.country AS seller_country, u_seller.city AS seller_city, u_seller.phone_number AS seller_phone
             FROM sold_products sp
             JOIN products p ON sp.product_id = p.id
+            JOIN users u_buyer ON sp.user_id = u_buyer.id
+            JOIN users u_seller ON sp.seller_id = u_seller.id
             WHERE sp.id = :sold_product_id
         ');
         $query->bindValue(':sold_product_id', $sold_product_id, PDO::PARAM_INT);
         $query->execute();
         return $query->fetch();
     }
+    
     
 
 ?>
