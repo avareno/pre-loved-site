@@ -21,7 +21,6 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                 <ul>
                     <li><a href="#" onclick="showSection('profile-settings')">Profile Settings</a></li>
                     <li><a href="#" onclick="showSection('account-settings')">Account Settings</a></li>
-                    <li><a href="#" onclick="showSection('payment-methods')">Payment Methods</a></li>
                 </ul>
             </nav>
 
@@ -107,9 +106,6 @@ function draw_settings_page($username, $is_admin, $is_seller, $row)
                     </section>
                 </section>
 
-                <section id="payment-methods" class="section">
-                    <h2>Payment Methods</h2>
-                </section>
             </section>
         </main>
     </body>

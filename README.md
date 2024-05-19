@@ -33,13 +33,13 @@
 
 - [X] List new items, providing details such as category, brand, model, size, and condition, along with images.
 - [X] Track and manage their listed items.
-- [ ] Respond to inquiries from buyers regarding their items and add further information if needed.
+- [X] Respond to inquiries from buyers regarding their items and add further information if needed.
 - [X] Print shipping forms for items that have been sold.
 
 **Buyers**  should be able to:
 
 - [X] Browse items using filters like category, price, and condition.
-- [ ] Engage with sellers to ask questions or negotiate prices.
+- [X] Engage with sellers to ask questions or negotiate prices.
 - [X] Add items to a wishlist or shopping cart.
 - [X] Proceed to checkout with their shopping cart (simulate payment process).
 
