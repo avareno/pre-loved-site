@@ -15,9 +15,9 @@
 </head>
 
 <body>
-    <section class="row" style="border:solid red 1px;">
+    <section class="row" ">
         <nav class="vertical-navbar column">
-            <ul style="border: solid blue 1px;">
+            <ul >
                 <?php
                 foreach ($conversations as $conversation) {
                     $conversation_id = htmlspecialchars($conversation['ID']);
@@ -34,7 +34,7 @@
             </ul>
         </nav>
 
-        <section id="chat" class="column" style="border: solid blue 1px;">
+        <section id="chat" class="column" >
             <section id="conversation-details">
                 <p id="account-id" style="display:none;"></p>
                 <p id="submit-date" style="display:none;"></p>
