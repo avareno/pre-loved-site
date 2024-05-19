@@ -6,6 +6,15 @@
 - Miguel Cabral (up202204996) 43%
 - Tomas Esteves (up202205045) 18%
 
+
+## Install Instructions
+
+    git clone (https://github.com/FEUP-LTW-2024/ltw-project-2024-ltw16g05.git)
+    git checkout final-delivery-v1
+    php -S localhost:9000
+    open "http://localhost:9000/pages/main_page/index.php" on browser
+
+
 ## Screenshots
 
 
