@@ -2,7 +2,7 @@
 .shipping-label {
     width: 80mm; 
     padding: 10mm; 
-    border: 1px solid #000; /
+    border: 1px solid #000; 
     margin: 0 auto; 
     font-family: Arial, sans-serif;
     background-color: #fff; 
