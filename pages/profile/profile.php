@@ -24,6 +24,6 @@ $products = getProductsBySellerId($db, $row['id']);
 
 draw_header($username,$is_admin, $is_seller,"profile");
 draw_profile_main($row, $username, $products,$db);
-draw_footer()
+draw_footer();
 ?>
 

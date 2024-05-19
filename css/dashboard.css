@@ -35,30 +35,7 @@ nav ul li a {
     text-decoration: none;
 }
 
-.profile {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-    background-color: #fff;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
 
-.profile-image-container {
-    flex: 1;
-    text-align: center;
-    margin-right: 20px;
-}
-
-.profile-image-container img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
 
 .profile-details {
     flex: 2;
@@ -214,6 +191,24 @@ nav ul li a {
     height: 0;
 }
 
+.chat-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    background-color: #04aa6d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width:120px
+}
+
+.chat-button:hover {
+    background-color: #028a5e;
+}
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -259,7 +254,6 @@ input:checked + .slider:before {
 footer {
     padding: 20px;
     text-align: center;
-    width: 100%;
     position: relative;
     bottom: 0;
 }
@@ -267,6 +261,9 @@ footer {
 @media screen and (max-width: 768px) {
     .product-card {
         width: calc(50% - 40px);
+    }
+    .chat-button{
+        width: 80px;
     }
 }
 

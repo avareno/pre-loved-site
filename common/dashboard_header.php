@@ -15,7 +15,8 @@ function draw_html_structure() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard</title>
         <link rel="stylesheet" href="../../../css/dashboard.css"> 
-        <link rel="stylesheet" href="../../../css/container.css"> 
+        <link rel="stylesheet" href="../../../css/container.css">
+        <link rel="stylesheet" href="../../../css/profile_image.css"> 
     </head>
     <body>
     <?php

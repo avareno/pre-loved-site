@@ -43,11 +43,15 @@ function drawProfileSection($row, $averageRating)
                     <button type="submit" class="admin-button">Ban User</button>
                 </form>
             <?php endif; ?>
+            <button class="chat-button"  onclick="startChat('<?php echo htmlspecialchars($row['id'],$_SESSION['id']); ?>')">Start Chat  
+            
+            </button>
         </section>
     </section>
     <section class="profile-info">
         <label>Average Rating:</label>
-        <p><?php echo $averageRating !== null ? htmlspecialchars(number_format($averageRating, 2)) . ' &star;' : 'No ratings yet'; ?></p>
+        <p><?php echo $averageRating !== null ? htmlspecialchars(number_format($averageRating, 2)) . ' &star;' : 'No ratings yet'; ?>
+        </p>
     </section>
     <?php
 }
@@ -63,7 +67,8 @@ function drawTopReviewsSection($reviews, $db)
             <ul>
                 <?php foreach ($reviews as $review): ?>
                     <li>
-                        <p><strong>User:</strong> <?php echo htmlspecialchars((getUserByUserId($db, $review['SENDER_ID']))['username']); ?></p>
+                        <p><strong>User:</strong>
+                            <?php echo htmlspecialchars((getUserByUserId($db, $review['SENDER_ID']))['username']); ?></p>
                         <p><strong>Review:</strong> <?php echo htmlspecialchars($review['REVIEW']); ?></p>
                         <p><strong>Rating:</strong> <?php echo $review['RATING']; ?> &star;</p>
                     </li>
@@ -81,7 +86,7 @@ function drawProductsSection($products, $db)
         <h2>Products on Sale</h2>
         <section class="products-container">
             <?php if (empty($products)) { ?>
-                <section class="column" style="width:100%;">
+                <section class="column">
                     <h3>No products yet</h3>
                 </section>
             <?php } ?>
@@ -138,26 +143,32 @@ function drawUserProfile($username, $row, $products, $db, $averageRating)
     ?>
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Profile</title>
         <link rel="stylesheet" href="../../../css/dashboard.css">
         <link rel="stylesheet" href="../../../css/container.css">
-        
+        <link rel="stylesheet" href="../../../css/profile_image.css">
+        <script src="../../js/chat/button handler.js"></script>
+
+
     </head>
+
     <body>
         <?php drawHeader($username); ?>
         <main>
-            <?php 
+            <?php
             drawProfileSection($row, $averageRating);
             drawReviewSection($row['id']);
             drawTopReviewsSection(fetchDataAll($db, "SELECT * FROM reviews WHERE receiver_id = :receiver_id ORDER BY id DESC LIMIT 5", [':receiver_id' => $row['id']]), $db);
-            drawProductsSection($products, $db); 
+            drawProductsSection($products, $db);
             ?>
         </main>
         <?php draw_footer(); ?>
     </body>
+
     </html>
     <?php
 }
