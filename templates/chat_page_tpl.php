@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../../css/container.css">
     <link rel="stylesheet" href="../../../css/settings.css">
     <link rel="stylesheet" href="../../../css/chat.css">
+    <link rel="stylesheet" href="../../../css/conversation.css">
     <script src="../../js/chat/messages_handler.js"></script>
 </head>
 
