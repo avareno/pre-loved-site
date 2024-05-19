@@ -46,11 +46,11 @@
 
 .grid-container li .product-price {
     font-size: 16px;
-    color: #c45500; /* Cor de laranja */
+    color: #c45500; 
 }
 
 .grid-container li button {
-    background-color: #ff9900; /* Laranja */
+    background-color: #ff9900; 
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -60,5 +60,5 @@
 }
 
 .grid-container li button:hover {
-    background-color: #e68a00; /* Laranja mais escura */
+    background-color: #e68a00; 
 }

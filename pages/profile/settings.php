@@ -17,14 +17,14 @@ checkSessionAndRedirect("../../main_page/index.php");
 
 $username = $_SESSION['username'];
 
-// Fetch user information including the profile image URL and role from the database
+
 $row = getUserByUsername($db, $username);
 
-// Check if the user has admin or seller role
+
 $is_admin = $row['permissions'] === 'admin';
 $is_seller = $row['permissions'] === 'seller';
 
-// Fetch products associated with the logged-in user
+
 $products = getProductsBySellerId($db, $row['id']);
 
 

@@ -8,11 +8,11 @@ require_once '../../utils/getters.php';
 
 $db = getDatabaseConnection();
 
-// Get the user ID from URL parameters
+
 if (isset($_GET['id'])) {
     $user_id = $_GET['id'];
 } else {
-    // Redirect or show an error message if the user ID parameter is not provided
+    
     exit("User ID parameter is missing.");
 }
 
@@ -23,7 +23,7 @@ $row = getUserByUserId($db, $user_id);
 
 $averageRatingQuery = fetchData($db, 'SELECT AVG(rating) AS average_rating FROM reviews WHERE receiver_id = :receiver_id', [':receiver_id' => $row['id']]);
 $averageRating = $averageRatingQuery ? $averageRatingQuery['average_rating'] : null;
-// Check if the user has admin or seller role
+
 $is_admin = $row['permissions'] === 'admin';
 $is_seller = $row['permissions'] === 'seller';
 $username = $row['username'];

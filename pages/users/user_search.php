@@ -7,11 +7,11 @@ $db = getDatabaseConnection();
 
 if (isGetParamSet('key')) {
     $key = '%' .htmlspecialchars($_GET['key']. '%');
-    $query = "SELECT * FROM users WHERE username LIKE :key";//OR email LIKE :key implement?
+    $query = "SELECT * FROM users WHERE username LIKE :key";
     $users = fetchDataAll($db, $query, [':key' => $key]);
 }
 
-// Draw the header
+
 drawHeader();
 drawGridSection($users);
 

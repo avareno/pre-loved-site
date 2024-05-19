@@ -16,7 +16,7 @@ function getUserByUsername($db, $username)
     $stmt->bindParam(":username", $username);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row; // Returns the user data as an associative array
+    return $row; 
 }
 
 function getUserByUserId($db, $id)
@@ -26,7 +26,7 @@ function getUserByUserId($db, $id)
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row; // Returns the user data as an associative array
+    return $row; 
 }
 
 function getProductsBySellerId($db, $sellerId)
@@ -36,7 +36,7 @@ function getProductsBySellerId($db, $sellerId)
     $product_stmt->bindParam(":seller_id", $sellerId);
     $product_stmt->execute();
     $products = $product_stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $products; // Returns an array of products
+    return $products; 
 }
 
 function isUserLoggedIn()

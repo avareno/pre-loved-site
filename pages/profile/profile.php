@@ -16,7 +16,7 @@ $username = $_SESSION['username'];
 
 $row = getUserByUsername($db, $username);
 
-// Check if the user has admin or seller role
+
 $is_admin = $row['permissions'] === 'admin';
 $is_seller = $row['permissions'] === 'seller';
 

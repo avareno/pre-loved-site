@@ -125,9 +125,9 @@ function drawLogoAndMenuItems()
         <a href="../cart/cart.php">Cart</a>
     </li>
     <?php
-    session_start(); // Start the session to check user login status
+    session_start(); 
 
-    // Check if user is already logged in
+    
     if (isset($_SESSION['username'])) {
         echo '<li class="right hideOnMobile"><a href="../profile/profile.php">Profile</a></li>';
     } else {

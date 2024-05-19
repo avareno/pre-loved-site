@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 require_once '../../database/read_tables.php';
 require_once '../../utils/getters.php';
 require_once '../../common/login_register.php';
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password'];
     }
 
-    // Check if any field is empty
+    
     if (empty($email) || empty($password)) {
         $login_err = 'Fill all the fields to register';
     } else {

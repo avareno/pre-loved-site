@@ -5,7 +5,7 @@ require '../../templates/products_page.php';
 
 $db = getDatabaseConnection();
 
-// Handle search
+
 if (isPostParamSet('find')) {
     $search_type = $_POST['search_type'];
 
