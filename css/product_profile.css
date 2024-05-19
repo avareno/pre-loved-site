@@ -1,4 +1,5 @@
 /* product_profile.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 /* Grid Container */
 .grid-container {
@@ -7,8 +8,15 @@
     gap: 20px;
     padding: 20px;
     background-color: #fff;
-    border: 1px solid #ffee00;
     border-radius: 5px;
+}
+
+p, h1{
+    font-family: "Inter", sans-serif;
+}
+
+body{
+    background-color: #cecece;
 }
 
 /* Product Images */
@@ -31,8 +39,10 @@
 
 /* Product Details */
 .grid-container h1 {
-    font-size: 24px;
+    font-size: 30px;
+    text-align: center;
     margin: 0;
+    margin-top: 10px;
 }
 
 .grid-container p {
@@ -41,7 +51,7 @@
 
 /* Add to Cart Button */
 .grid-container input[type="submit"] {
-    background-color: #f0c14b;
+    background-color: #04aa6d;
     color: #111;
     border: 1px solid;
     border-color: #a88734 #9c7e31 #846a29;
@@ -49,6 +59,76 @@
     cursor: pointer;
     font-size: 16px;
     border-radius: 3px;
+    transition: color 0.5s;
+}
+
+.grid-container input[type="submit"]:hover{
+    color: white;
+}
+
+#content{
+    background-color: #ffffff;
+}
+
+
+#price{
+    font-size: 180%;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, auto); 
+    grid-gap: 10px; 
+    }
+  
+.left, .right {
+    padding: 0;
+}
+
+.details .left {
+grid-column: 1;
+}
+
+.details .right {
+grid-column: 2;
+}
+
+.details p{
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
+    font-size: small;
+    color: grey;
+}
+
+.left{
+    font-weight: 750;
+}
+
+.right{
+    font-weight: 500;
+}
+
+#out-of-stock-container {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+    margin-top: 10px; 
+    flex-direction: column;
+}
+
+#out-of-stock-button {
+    padding: 10px;
+    cursor: not-allowed; 
+}
+
+#out-of-stock-message {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    color: red;
+    margin-top: 10px;
+    text-align: center;
 }
 
 /* Responsive Adjustments */

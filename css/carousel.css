@@ -17,6 +17,8 @@
     height:400px;
     overflow: hidden;
     margin: auto;
+    max-width: 60%; 
+    height: auto; 
 }
 
 .slider::-webkit-scrollbar {
@@ -27,6 +29,8 @@
     flex: 1 0 100%;                         
     scroll-snap-align: start;
     width: 100%;
+    max-width: 100%; 
+    height: auto;  
 }
 
 .slider-nav {
@@ -55,4 +59,37 @@
 .slider-nav a:hover {
     opacity: 1;
 
+}
+
+@media (max-width: 768px) {
+    .slider {
+        width: 80%; /* Increase width on smaller screens */
+        height: 300px; /* Adjust height for smaller screens */
+    }
+    .slider-nav a {
+        width: 7px; /* Slightly larger dots for better visibility */
+        height: 7px;
+    }
+}
+
+@media (max-width: 560px) {
+    .slider {
+        width: 90%; /* Further increase width on very small screens */
+        height: 250px; /* Further adjust height for very small screens */
+    }
+
+    .slider-nav {
+        bottom: 1rem; /* Adjust position of slider navigation */
+    }
+
+    .slider-nav a {
+        width: 3px; /* Even larger dots for very small screens */
+        height: 3px;
+    }
+}
+
+@media (max-width: 400px) {
+    .slider-nav a {
+        margin: 0 5px; /* Adjust the left and right margins to bring dots closer */
+    }
 }

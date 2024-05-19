@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 #navbar ul {
   list-style-type: none;
   margin: 0;
@@ -22,6 +24,7 @@
 
 #navbar ul li a {
   display: inline-block;
+  font-family: "Inter", sans-serif;
   transition: all 0.2s ease-in;
   color: black;
   padding: 0.7em 1.7em;
@@ -294,10 +297,9 @@ img {
   }
 }
 
-@media screen and (max-width: 380px){
-  .hideOnMobile{
-    display: none;
+@media screen and (max-width: 400px){
+  .sidebar{
+    width: 100%;
   }
-
 }
 
