@@ -114,7 +114,7 @@ function drawSearch()
 function drawLogoAndMenuItems()
 {
     ?>
-    <li><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_IMG_Media_broadcasting_company_logo.png"></li>
+    <li><img src='../../assets/ltm-logo-full.png'></li>
     <li class="hideOnMobile"><a class="active" href="../main_page/index.php">Home</a></li>
     <li class="right hideOnMobile">
         <?php drawSearch() ?>

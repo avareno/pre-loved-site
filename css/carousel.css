@@ -13,12 +13,10 @@
     border-radius: 0.5rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: 50%; 
-    height:300px;
+    width: 60%; 
+    height:400px;
     overflow: hidden;
     margin: auto;
-    max-width: 60%; 
-    height: auto; 
 }
 
 .slider::-webkit-scrollbar {

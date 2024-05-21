@@ -9,16 +9,16 @@ CREATE TABLE images(
 
 
 INSERT INTO images (title, img_url, carousel_img, product_id) VALUES 
-    ('iPhone X', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'iPhone X')),
-    ('Vintage Leather Jacket', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg',  (SELECT id FROM products WHERE title = 'Vintage Leather Jacket')),
-    ('Nintendo Switch', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Nintendo Switch')),
-    ('Antique Silverware Set', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Antique Silverware Set')),
-    ('Golf Clubs', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg',  (SELECT id FROM products WHERE title = 'Golf Clubs')),
-    ('Samsung Galaxy S10', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Samsung Galaxy S10')),
-    ('Sony PlayStation 5', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Sony PlayStation 5')),
-    ('MacBook Pro', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'MacBook Pro')),
-    ('Canon EOS Rebel T7i', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg',  (SELECT id FROM products WHERE title = 'Canon EOS Rebel T7i')),
-    ('Apple AirPods Pro', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg',  (SELECT id FROM products WHERE title = 'Apple AirPods Pro')),
-    ('Nike Air Max 270', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Nike Air Max 270')),
-    ('Sony WH-1000XM4', '', 'https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_new_glass_full.jpg.og.jpg', (SELECT id FROM products WHERE title = 'Sony WH-1000XM4'))
+    ('iPhone X', '', '../../assets/iphonex_carousel_img.jpg', (SELECT id FROM products WHERE title = 'iPhone X')),
+    ('Vintage Leather Jacket', '', '../../assets/leather_jacket_carousel_img.jpg',  (SELECT id FROM products WHERE title = 'Vintage Leather Jacket')),
+    ('Nintendo Switch', '', '../../assets/nintendo_carousel_img.jpg', (SELECT id FROM products WHERE title = 'Nintendo Switch')),
+    ('Antique Silverware Set', '', '../../assets/silverware_carousel_img.jpg', (SELECT id FROM products WHERE title = 'Antique Silverware Set')),
+    ('Golf Clubs', '', '../../assets/golf_clubs_carousel_img.jpg',  (SELECT id FROM products WHERE title = 'Golf Clubs')),
+    ('Samsung Galaxy S10', '', '../../assets/samsung_carousel_img.jpg', (SELECT id FROM products WHERE title = 'Samsung Galaxy S10')),
+    ('Sony PlayStation 5', '', '../../assets/ps5_carousel_img.jpg', (SELECT id FROM products WHERE title = 'Sony PlayStation 5')),
+    ('MacBook Pro', '', '../../assets/macbook_carousel_img.jpg', (SELECT id FROM products WHERE title = 'MacBook Pro')),
+    ('Canon EOS Rebel T7i', '', '../../assets/canon_carousel_img.jpg',  (SELECT id FROM products WHERE title = 'Canon EOS Rebel T7i')),
+    ('Apple AirPods Pro', '', '../../assets/airpods_carousel_img.jpg',  (SELECT id FROM products WHERE title = 'Apple AirPods Pro')),
+    ('Nike Air Max 270', '', '../../assets/nike_carousel_img.jpeg', (SELECT id FROM products WHERE title = 'Nike Air Max 270')),
+    ('Sony WH-1000XM4', '', '../../assets/phones_carousel_img.jpg', (SELECT id FROM products WHERE title = 'Sony WH-1000XM4'))
 ;
