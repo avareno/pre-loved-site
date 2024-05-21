@@ -38,7 +38,7 @@
             <section id="conversation-details">
                 <p id="account-id" style="display:none;"></p>
                 <p id="submit-date" style="display:none;"></p>
-                <div id="messages"></div>
+                <section id="messages"></section>
                 <form id="message-form">
                     <input type="text" id="message-input" name="message" placeholder="Type a message" required>
                     <input type="hidden" id="recipient-id" name="recipient-id">

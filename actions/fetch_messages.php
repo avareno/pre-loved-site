@@ -14,9 +14,9 @@ if (isset($_GET['conversation_id'])) {
     $messages = fetchDataAll($db, $stmt, [':conversation_id' => $conversation_id]);
 
     foreach ($messages as $message) {
-        echo '<div><strong>' . htmlspecialchars($message['username']) . ':</strong> ' .
+        echo '<section><strong>' . htmlspecialchars($message['username']) . ':</strong> ' .
              htmlspecialchars($message['MSG']) . ' <em>(' .
-             htmlspecialchars($message['SUBMIT_DATE']) . ')</em></div>';
+             htmlspecialchars($message['SUBMIT_DATE']) . ')</em></section>';
     }
 }
 ?>
