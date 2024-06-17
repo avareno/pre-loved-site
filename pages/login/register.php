@@ -43,6 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($password != $password_conf) {
             $errors[] = 'Passwords do not match';
         }
+        
+        if ( !preg_match ("/^[a-zA-Z\s]+$/", $username)) {
+            $errors[] = 'Invalid characters';
+        }
 
         if (!empty($errors)) {
             $login_err = $errors[0];
